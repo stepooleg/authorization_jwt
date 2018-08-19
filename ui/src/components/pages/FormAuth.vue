@@ -22,13 +22,13 @@
                               placeholder="Введите пароль">
                 </b-form-input>
             </b-form-group>
-            <b-button @click="login" type="submit" variant="primary">Отправить</b-button>
+            <b-button @click="login" type="button" variant="primary">Отправить</b-button>
         </b-form>
     </div>
 </template>
 
 <script>
-  import {AUTH_REQUEST} from '../store/actions/auth'
+  const axios = require('axios')
   export default {
     name: 'FormAuth',
     data () {
@@ -40,46 +40,34 @@
     methods: {
       login: function () {
         const { username, password } = this
-        this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
-         // this.$router.push('/list')
+        let url = 'http://localhost:8090/auth?username=' + username + '&password=' + password
+        axios(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+//        withCredentials: true,
+          credentials: 'same-origin'
         })
+          .then(resp => {
+            const token = resp.data
+            console.log(token)
+            if (token !== null && token !== undefined && !token.isEmpty) {
+              this.$router.push('List')
+            }
+            // localStorage.setItem('user-token', resp.token)
+            // Here set the header of your ajax library to the token value.
+            // example with axios
+            // this.axios.defaults.headers.common['Authorization'] = resp.token
+            // commit(AUTH_SUCCESS, resp)
+            // dispatch(USER_REQUEST)
+            // resolve(resp)
+          })
+          .catch(err => {
+            console.log(err)
+          })
       }
-    },
-//     methods: {
-//       onSubmit (evt) {
-//         evt.preventDefault()
-//         console.log(this.login)
-//         let url = 'http://localhost:8080/ticketservice-2.0.0/auth?login=' +
-//         this.postBody.login +
-//         '&pass=' + this.postBody.pass
-//         axios(url, {
-//           method: 'POST',
-//           mode: 'no-cors',
-//           headers: {
-//             'Content-Type': 'application/json'
-//           },
-// //        withCredentials: true,
-//           credentials: 'same-origin'
-//         })
-//           .then(response => {
-//             console.log(response.data)
-//             const token = response.data
-//             localStorage.setItem('user-token', token) // store the token in localstorage
-//             resolve(response)
-//             this.$router.push({name: 'List'})
-//           }
-//             // handle success
-//           )
-//           .catch(function (error) {
-//             // handle error
-//             console.log(error)
-//           })
-//       },
-    onReset (evt) {
-      evt.preventDefault()
-        /* Reset our form values */
-      this.login = ''
-      this.pass = ''
     }
   }
 </script>

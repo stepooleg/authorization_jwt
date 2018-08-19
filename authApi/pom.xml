@@ -10,11 +10,11 @@
 
     <packaging>war</packaging>
 
-    <parent>
-        <artifactId>sys</artifactId>
-        <groupId>ru.idmt.documino.ebox</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+    <!--<parent>-->
+        <!--<artifactId>sys</artifactId>-->
+        <!--<groupId>ru.idmt.documino.ebox</groupId>-->
+        <!--<version>1.0.0-SNAPSHOT</version>-->
+    <!--</parent>-->
 
     <description>
       Служба аутентификации пользователей.
@@ -80,6 +80,7 @@
             <artifactId>nimbus-jose-jwt</artifactId>
             <version>5.9</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper -->
 
     </dependencies>
 
@@ -95,27 +96,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>ru.idmt.commons</groupId>
-                <artifactId>idmt-maven-git-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                    <execution>
-                        <id>git-info</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>get-info</goal>
-                        </goals>
-
-                        <configuration>
-                            <revisionProperty>git.revision</revisionProperty>
-                            <commitsProperty>git.commits</commitsProperty>
-                            <urlProperty>git.url</urlProperty>
-                            <revisionLength>8</revisionLength>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,5 +1,6 @@
 ru\auth\models\UserModel$ROLE.class
 ru\auth\dao\UserDao.class
+ru\auth\servlets\filter\LoginFilter.class
 ru\auth\servlets\servlet\AuthServlet.class
 ru\auth\models\UserModel.class
 ru\auth\servlets\filter\CORFilter.class

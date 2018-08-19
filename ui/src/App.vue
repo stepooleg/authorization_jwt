@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import { USER_REQUEST } from './components/store/actions/user'
+  import { USER_REQUEST } from './store/actions/user'
 
   export default {
     name: 'app',
