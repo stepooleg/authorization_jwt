@@ -1,36 +1,25 @@
 <template>
     <!--Модуль табов списка документов-->
     <b-tabs class="nav nav-tabs tab-content">
-            <b-tab class="tab-content" active>
+            <b-tab class="tab-content" v-bind:class="{active : index == 0}" v-for="(tab, index) in btabsMas" :key="index">
                 <template slot="title">
-                    <b>Мои задания</b> <i class='fas fa-times-circle'></i>
+                    <b>{{tab}}</b>
+                    <i  v-if="index > 0" @click="closeTab(index)" class='fas fa-times-circle'></i>
                 </template>
-                <div class="row mt-3">
                     <!-- Содержимое вкладки-->
-                    <div class="col col-12">
-                        <div class="row">
-                            <doc-filter></doc-filter>
+                        <div class="col-12">
+                            <div class="row">
+                                <table-doc
+                                        :tableDoc=tableDoc
+                                        :filterDoc=filterDoc></table-doc>
+                            </div>
                         </div>
-                        <table-doc :tableDoc=tableDoc></table-doc>
-                    </div>
-                </div>
                 <paginator-bot
                         class="pagination-lg justify-content-end"
                         :first-number="true"
-                        :count-pages=ColPages v-on:remove="swipPage">
-
+                        :count-pages=ColPages
+                        v-on:remove="swipPage">
                 </paginator-bot>
-            </b-tab>
-            <b-tab>
-                <template slot="title">
-                    <b>ВСХ ИА-2200</b> <i class='fas fa-times-circle'></i>
-                </template>
-            </b-tab>
-            <b-tab>
-                <template slot="title">
-                    <b>ИСХ ВР-2200</b> <i class='fas fa-times-circle'></i>
-                </template>
-                {{ColPages}}////////{{PageNumber}}
             </b-tab>
     </b-tabs>
 </template>
@@ -44,7 +33,13 @@
     data () {
       return {
         PageNumber: 1,
-        RowsInPage: 20
+        btabsMas: [
+          'Мои задания',
+          'ВСХ ИА-2200',
+          'ИСХ ВР-2200'
+        ],
+        RowsInPage: 20,
+        filterDoc: null
       }
     },
     computed: {
@@ -60,6 +55,13 @@
       swipPage (number) {
         console.log(number)
         this.PageNumber = number
+      },
+      closeTab (index) {
+        this.btabsMas.splice(index, 1)
+      },
+      filterList (filter) {
+        this.filterDoc = filter
+        console.log(this.filterDoc)
       }
     }
   }

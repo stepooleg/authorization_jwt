@@ -1,19 +1,24 @@
 <template>
     <!--Правый раздел с табами "Основные, Лист согласования и т.д."-->
-    <div class="col col-3 ">
+    <div class="col col-3 " style="font-size: 1.2rem;">
         <div class="col-12">
-            <nav class="bg-light">
+            <nav class="bg-white">
                 <b-tabs class="nav nav-tabs tab-content font-tab">
                     <b-tab class="tab-content" active>
                         <template slot="title">
-                            <b>Основные</b> <i class='fas fa-times-circle'></i>
+                            <b>Основные</b>
+                            <i class='mdi mdi-close-circle-outline'></i>
                         </template>
                         <!-- Содержимое вкладки-->
-                        <div class="tab-pane fade show active bg-light" id="nav-basic-r" role="tabpanel" aria-labelledby="nav-basic-tab">
+                        <div
+                                class="tab-pane fade show active bg-white"
+                                id="nav-basic-r"
+                                role="tabpanel"
+                                aria-labelledby="nav-basic-tab">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col-12 bg-light text-right text-blue">
-                                        <i class="fas fa-print mt-3 fa-2x"></i>
+                                    <div class="col-12 bg-white text-right text-blue">
+                                        <i class="mdi mdi-printer mt-3 fr"></i>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -25,10 +30,14 @@
 
                     <b-tab class="tab-content">
                         <template slot="title">
-                            <b>Лист согласования</b> <i class='fas fa-times-circle'></i>
+                            <b>Лист согласования</b>
+                            <i class='mdi mdi-close-circle-outline'></i>
                         </template>
                         <!-- Содержимое вкладки-->
-                        <div class="tab-pane fade show active bg-light" role="tabpanel" aria-labelledby="nav-basic-tab">
+                        <div
+                                class="tab-pane fade show active bg-white"
+                                role="tabpanel"
+                                aria-labelledby="nav-basic-tab">
                             <div class="col-12">
                                 <div class="row">
                                         <document-log :doc-card-in=statusDoc></document-log>
@@ -39,7 +48,17 @@
 
                     <b-tab class="tab-content">
                         <template slot="title">
-                            <b>История</b> <i class='fas fa-times-circle'></i>
+                            <b>История</b> <i class='mdi mdi-close-circle-outline'></i>
+                        </template>
+                        <!-- Содержимое вкладки-->
+                        <div class="row bg-white">
+                        </div>
+                    </b-tab>
+
+                    <b-tab class="tab-content">
+                        <template slot="title">
+                            <b>Аудит</b>
+                            <i class='mdi mdi-close-circle-outline'></i>
                         </template>
                         <!-- Содержимое вкладки-->
                         <div class="row bg-light">
@@ -48,16 +67,7 @@
 
                     <b-tab class="tab-content">
                         <template slot="title">
-                            <b>Аудит</b> <i class='fas fa-times-circle'></i>
-                        </template>
-                        <!-- Содержимое вкладки-->
-                        <div class="row bg-light">
-                        </div>
-                    </b-tab>
-
-                    <b-tab class="tab-content">
-                        <template slot="title">
-                            <b>...</b> <i class='fas fa-times-circle'></i>
+                            <b>...</b> <i class='mdi mdi-close-circle-outline'></i>
                         </template>
                         <!-- Содержимое вкладки-->
                         <div class="row bg-light">
@@ -69,15 +79,27 @@
             <div class="tab-content bg-light font-tab" id="nav-tabContent-rs">
 
 
-                <div class="tab-pane fade" id="nav-history-r" role="tabpanel" aria-labelledby="nav-historyt-tab">Contact
+                <div
+                        class="tab-pane fade"
+                        id="nav-history-r"
+                        role="tabpanel"
+                        aria-labelledby="nav-historyt-tab">Contact
                     <br>
                     <br>
                 </div>
-                <div class="tab-pane fade" id="nav-audit-r" role="tabpanel" aria-labelledby="nav-audit-tab">Contact
+                <div
+                        class="tab-pane fade"
+                        id="nav-audit-r"
+                        role="tabpanel"
+                        aria-labelledby="nav-audit-tab">Contact
                     <br>
                     <br>
                 </div>
-                <div class="tab-pane fade" id="nav-all-r" role="tabpanel" aria-labelledby="nav-all-tab">Contact
+                <div
+                        class="tab-pane fade"
+                        id="nav-all-r"
+                        role="tabpanel"
+                        aria-labelledby="nav-all-tab">Contact
                     <br>
                     <br>
                 </div>
@@ -99,16 +121,16 @@
     props: [
       'statusDoc'
     ],
-    components: {DocumentLog, PropertiDocumentTab}
+    components: {
+      DocumentLog,
+      PropertiDocumentTab
+    }
   }
 </script>
 
 <style scoped>
     .show {
         display: block;
-    }
-    .font-tab{
-        font-size: 1.1rem;
     }
     .text-blue{
         color: #1e88e5;
@@ -131,6 +153,9 @@
     .toggle-btn-line ul li{
         display: inline;
         list-style-type: none;
+    }
+    i{
+        font-size: 1.5rem;
     }
 
 </style>

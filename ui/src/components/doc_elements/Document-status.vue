@@ -22,7 +22,9 @@
                                 <div class="col-9">
                                     <span class="summary">Егоров М.А.</span>
                                     <br>
-                                    <span class="text-muted small-tab">Заместитель генерального директора по стратегическому развитию</span>
+                                    <span class="text-muted small-tab">
+                                        Заместитель генерального директора по стратегическому развитию
+                                    </span>
                                 </div>
                             </div>
                         </b>
@@ -30,11 +32,15 @@
                 </tr>
                 <tr class="row">
                     <td class="col-4 text-muted">Дата поступления:</td>
-                    <td class="col-8 "><b>01.07.2018</b></td>
+                    <td class="col-8 ">
+                        <b>01.07.2018</b>
+                    </td>
                 </tr>
                 <tr class="row">
                     <td class="col-4 text-muted">Принято в работу:</td>
-                    <td class="col-8 "><b>01.07.2018</b></td>
+                    <td class="col-8 ">
+                        <b>01.07.2018</b>
+                    </td>
                 </tr>
                 <tr class="row">
                     <td class="col-4 text-muted">Срок:</td>

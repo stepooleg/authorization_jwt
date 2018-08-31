@@ -1,85 +1,74 @@
 <template>
-    <div>
-        <b-form>
-            <b-form-group id="exampleInputGroup1"
-                          label="Login:"
-                          label-for="exampleInput1"
-                          description="Введите логин">
-                <b-form-input id="exampleInput1"
-                              type="text"
-                              v-model="username"
-                              required
-                              placeholder="Введите логин">
-                </b-form-input>
-            </b-form-group>
-            <b-form-group id="exampleInputGroup2"
-                          label="Password"
-                          label-for="exampleInput2">
-                <b-form-input id="exampleInput2"
-                              type="password"
-                              v-model="password"
-                              required
-                              placeholder="Введите пароль">
-                </b-form-input>
-            </b-form-group>
-            <b-button @click="login" type="submit" variant="primary">Отправить</b-button>
-        </b-form>
-    </div>
+    <!--Страница авторизации. Подключение происходит автоматически
+    при положительной авторизации проис-->
+    <b-container class="bv-example-row bv-example-row-flex-cols">
+        <b-row>
+            <b-col align-self="center"></b-col>
+            <b-col align-self="center" class="mt-3 text-center">
+                <h1>Авторизация...</h1>
+            </b-col>
+            <b-col align-self="center"></b-col>
+        </b-row>
+        <b-row>
+            <b-col align-self="center"></b-col>
+            <b-col align-self="center" class="mt-3 text-center">
+                <v-progress-circular
+                        :size="70"
+                        :width="7"
+                        color="purple"
+                        indeterminate
+                        v-if="loading">
+                </v-progress-circular>
+            </b-col>
+            <b-col align-self="center"></b-col>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
-  import {AUTH_REQUEST} from '../store/actions/auth'
+  const axios = require('axios')
   export default {
     name: 'FormAuth',
     data () {
       return {
-        username: '',
-        password: ''
+        username: 'master',
+        password: 'master',
+        loading: true
       }
     },
-    methods: {
-      login: function () {
-        const { username, password } = this
-        this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
-         // this.$router.push('/list')
-        })
-      }
-    },
-//     methods: {
-//       onSubmit (evt) {
-//         evt.preventDefault()
-//         console.log(this.login)
-//         let url = 'http://localhost:8080/ticketservice-2.0.0/auth?login=' +
-//         this.postBody.login +
-//         '&pass=' + this.postBody.pass
-//         axios(url, {
-//           method: 'POST',
-//           mode: 'no-cors',
-//           headers: {
-//             'Content-Type': 'application/json'
-//           },
-// //        withCredentials: true,
-//           credentials: 'same-origin'
-//         })
-//           .then(response => {
-//             console.log(response.data)
-//             const token = response.data
-//             localStorage.setItem('user-token', token) // store the token in localstorage
-//             resolve(response)
-//             this.$router.push({name: 'List'})
-//           }
-//             // handle success
-//           )
-//           .catch(function (error) {
-//             // handle error
-//             console.log(error)
-//           })
-//       },
-    onReset (evt) {
-      evt.preventDefault()
-        /* Reset our form values */
-      this.login = ''
-      this.pass = ''
+    mounted () {
+      const { username, password } = this
+      let url = 'http://localhost:8080/ts/simple/login?name=' + username + '&password=' + password
+      axios(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+//        withCredentials: true,
+        credentials: 'same-origin'
+      })
+          .then(resp => {
+            this.loading = false
+            const token = resp.data
+            console.log(resp)
+            if (token !== null && token !== undefined && !token.isEmpty) {
+              localStorage.setItem('user-token', token)
+              axios.defaults.headers.common['Authorization'] = localStorage.getItem('user-token')
+              this.$router.push('List')
+            }
+            // localStorage.setItem('user-token', resp.token)
+            // Here set the header of your ajax library to the token value.
+            // example with axios
+            // this.axios.defaults.headers.common['Authorization'] = resp.token
+            // commit(AUTH_SUCCESS, resp)
+            // dispatch(USER_REQUEST)
+            // resolve(resp)
+          })
+          .catch(err => {
+            console.log(err)
+          })
     }
   }
 </script>

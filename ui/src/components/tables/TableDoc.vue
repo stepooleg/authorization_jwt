@@ -1,58 +1,116 @@
 <template>
-    <table class="table table-striped task-table mt-3">
-        <thead class="thead-light">
-        <tr>
-            <th><input type="checkbox"></th>
-            <th></th>
-            <th>Задания</th>
-            <th style="width: 15%">Документ</th>
-            <th style="width: 38%">Краткое содержание</th>
-            <th>От кого</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(row, index) in tableDoc" :key="index" @dblclick="openToCard(row.r_object_id)">
-            <th scope="row">
-                <input type="checkbox">
-            </th>
-            <td class="tab_star">
-                <span v-bind:class="icon ? 'star_t far fa-star' : 'star_t fas fa-star' "></span>
-            </td>
-            <td class="">
-                <div class=" row header_tab_doc">На согласование</div>
-                <div class="row">Дата {{row.r_creation_date| moment("DD-MM-YYYY")}} г.</div>
-                <div class="row">Срок {{row.r_modify_date|  moment("DD-MM-YYYY")}} г.</div>
-            </td>
-            <td class="text-center">
-                                    <span v-bind:class="'badge badge-info'">
-                                        {{row.dss_kind}}
-                                    </span>
-                <br> {{row.dss_doc_number}} от {{row.dss_doc_date | moment("DD-MM-YYYY")}}
-            </td>
-            <td class="">
-                                            <span class="summary">
-                                                {{row.dss_requester_name}}
-                                            </span>
-                <br>
-                <span class="text-muted">
-                                        {{row.dss_name}}
-                                    </span>
-            </td>
-            <td class="w-25">
-                <div class="row">
-                    <div class="col-auto">
-                        <i v-bind:class="'far fa-user-circle fa-3x '"></i>
+    <div class="col col-12">
+        <div class="col col-12 bg-white mt-3">
+            <form>
+                <div class="form-row align-items-center">
+                    <div class="col-sm-2 my-1">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                   id="autoSizingCheck2">
+                            <label class="form-check-label" for="autoSizingCheck2">
+                                Только просмотренные
+                            </label>
+                        </div>
                     </div>
-                    <div class="col">
-                        <span class="summary">{{row.r_creator_name}}</span>
-                        <br>
-                        <span class="text-muted ">{{row.dss_dep}}</span>
+                    <div class="col-sm-2 my-1">
+                        <label class="sr-only" for="inlineFormCustomSelect">Список
+                            заданий</label>
+                        <select v-model="typeTask" class="form-control custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Тип задания</option>
+                            <option value="На согласовании">На согласовании</option>
+                            <option value="Согласованно">Согласованно</option>
+                            <option value="Выполняется">Выполняется</option>
+                            <option value="Выполненно">Выполненно</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 my-1">
+                        <label class="sr-only" for="inlineFormCustomSelectDoc">Список
+                            документов</label>
+                        <select v-model="typeDoc" tabindex="1" class="form-control custom-select mr-sm-2" id="inlineFormCustomSelectDoc">
+                            <option selected>Тип документа</option>
+                            <option value="Приказ">Приказ</option>
+                            <option value="Исходный документ">Исходный документ</option>
+                            <option value="Входящий документ">Входящий документ</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4 my-1">
+                        <label class="sr-only" for="inlineFormInputType">Поиск</label>
+                        <input v-model="search" type="text" class="form-control" id="inlineFormInputType"
+                               placeholder="Поиск">
                     </div>
                 </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            </form>
+        </div>
+        <div class="table-responsive bg-light table m-t-20 table-hover no-wrap contact-list footable-loaded footable ">
+            <table id="demo-foo-addrow" class="table table-responsive table-hover no-wrap contact-list" data-page-size="10">
+                <thead>
+                <tr>
+                    <th style="width: 3%">
+                        <div class="form-check">
+                            <input @click="checkEdit" class="form-check-input" type="checkbox" v-model="check"
+                                   id="r1">
+                            <label class="form-check-label" for="r1"></label>
+                        </div>
+                    </th>
+                    <th style="width: 3%"></th>
+                    <th style="width: 15%"><b>Задания</b></th>
+                    <th style="width: 15%"><b>Документ</b></th>
+                    <th style="width: 15%"><b>Краткое содержание</b></th>
+                    <th style="width: 15%"><b>От кого</b></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(row, index) in filterDoc" :key="index" @dblclick="openToCard(index)">
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" v-model="row.checkout"
+                                   v-bind:id="index">
+                            <label class="form-check-label" v-bind:for="index"></label>
+                        </div>
+                    </td>
+                    <td style="width: 10px">
+                        <div @click="row.stars=!row.stars">
+                            <i class=" mdi mdi-star-outline"  v-if="!row.stars"></i>
+                            <i class=" mdi mdi-star"  v-else></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="font-medium"><b>{{row.status}}</b></div>
+                        <div><b>Дата: {{row.date}}</b></div>
+                        <div><b>Срок {{row.dedline}}</b></div>
+                    </td>
+                    <td>
+                        <span class="label label-danger" v-if="row.typedoc==='Приказ'">{{row.typedoc}}</span>
+                        <span class="label label-primary" v-if="row.typedoc==='Входящий документ'">{{row.typedoc}}</span>
+                        <span class="label label-success" v-if="row.typedoc==='Исходный документ'">{{row.typedoc}}</span>
+                        <div>{{row.number}}</div>
+                    </td>
+                    <td>
+                        <div class="font-medium"><b v-for="(line, ind) in row.descriptionList" :key="ind">
+                            {{line}}<br>
+                        </b>
+                            <div>{{row.adress}}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="app-contact-detail.html">
+                            <img v-bind:src="row.img.src" alt="user" class="img-circle mr-3" v-if="row.img.image"/>
+                            <span class="round mr-3" v-else>{{row.author.charAt(0)}}</span>
+                            {{row.author}}
+                        </a>
+                        <div class="ml-6">
+                            <span
+                                    v-for="(name, index) in row.typeList"
+                                    :key="index">{{name}}<br>
+                            </span>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -60,7 +118,235 @@
     name: 'TableDoc',
     data () {
       return {
-        icon: true
+        icon: true,
+        check: false,
+        typeTask: 'Тип задания',
+        typeDoc: 'Тип документа',
+        filterDoc: [],
+        search: '',
+        rows: [
+          {
+            checkout: false,
+            stars: false,
+            status: 'На согласовании',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Исходный документ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О внедрении системы электронного документооборота ',
+              'архивного дела на предприятии топливо - энергетического'
+            ],
+            adress: 'Адресат ООО "АйДи Технологии управления"',
+            img: {
+              image: true,
+              src: require('../../assets/images/users/1.jpg')
+            },
+            author: 'Егоров Михаил Александрович',
+            typeList: [
+              'Заместитель генерального директора',
+              'по стратегическому развитию'
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'Согласованно',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Входящий документ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О приглашении на конкурс лучшая СЭД года.'
+            ],
+            adress: 'Корреспондент конкурса ООО "Лучшая СЭД года"',
+            img: {
+              image: false,
+              src: ''
+            },
+            author: 'СЭДО',
+            typeList: [
+              ''
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'На согласовании',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Приказ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О создании нового структурного подразделения '
+            ],
+            adress: 'Подписал Коновалов Р.В.',
+            img: {
+              image: true,
+              src: require('../../assets/images/users/4.jpg')
+            },
+            author: 'Рогов Дмитрий Николаевич ',
+            typeList: [
+              'Директор по технологическому ',
+              'развитию'
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'На согласовании',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Исходный документ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О внедрении системы электронного документооборота ',
+              'архивного дела на предприятии топливо - энергетического'
+            ],
+            adress: 'Адресат ООО "АйДи Технологии управления"',
+            img: {
+              image: true,
+              src: require('../../assets/images/users/1.jpg')
+            },
+            author: 'Егоров Михаил Александрович',
+            typeList: [
+              'Заместитель генерального директора',
+              'по стратегическому развитию'
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'Согласованно',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Входящий документ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О приглашении на конкурс лучшая СЭД года.'
+            ],
+            adress: 'Корреспондент конкурса ООО "Лучшая СЭД года"',
+            img: {
+              image: false,
+              src: ''
+            },
+            author: 'СЭДО',
+            typeList: [
+              ''
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'На согласовании',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Приказ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О создании нового структурного подразделения '
+            ],
+            adress: 'Подписал Коновалов Р.В.',
+            img: {
+              image: true,
+              src: require('../../assets/images/users/4.jpg')
+            },
+            author: 'Рогов Дмитрий Николаевич ',
+            typeList: [
+              'Директор по технологическому ',
+              'развитию'
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'На согласовании',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Исходный документ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О внедрении системы электронного документооборота ',
+              'архивного дела на предприятии топливо - энергетического'
+            ],
+            adress: 'Адресат ООО "АйДи Технологии управления"',
+            img: {
+              image: true,
+              src: require('../../assets/images/users/1.jpg')
+            },
+            author: 'Егоров Михаил Александрович',
+            typeList: [
+              'Заместитель генерального директора',
+              'по стратегическому развитию'
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'Согласованно',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Входящий документ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О приглашении на конкурс лучшая СЭД года.'
+            ],
+            adress: 'Корреспондент конкурса ООО "Лучшая СЭД года"',
+            img: {
+              image: false,
+              src: ''
+            },
+            author: 'СЭДО',
+            typeList: [
+              ''
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'На согласовании',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Приказ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О создании нового структурного подразделения '
+            ],
+            adress: 'Подписал Коновалов Р.В.',
+            img: {
+              image: true,
+              src: require('../../assets/images/users/4.jpg')
+            },
+            author: 'Рогов Дмитрий Николаевич ',
+            typeList: [
+              'Директор по технологическому ',
+              'развитию'
+            ]
+          },
+          {
+            checkout: false,
+            stars: false,
+            status: 'На согласовании',
+            date: '20.01.2017г.',
+            dedline: '20.01.2018г.',
+            typedoc: 'Исходный документ',
+            number: 'ВР-220022 от 01.10.2016г.',
+            descriptionList: [
+              'О внедрении системы электронного документооборота ',
+              'архивного дела на предприятии топливо - энергетического'
+            ],
+            adress: 'Адресат ООО "АйДи Технологии управления"',
+            img: {
+              image: true,
+              src: require('../../assets/images/users/1.jpg')
+            },
+            author: 'Егоров Михаил Александрович',
+            typeList: [
+              'Заместитель генерального директора',
+              'по стратегическому развитию'
+            ]
+          }
+        ]
       }
     },
     methods: {
@@ -71,7 +357,54 @@
             params: {id}
           }
         )
+      },
+      checkEdit () {
+        this.rows.forEach(e => {
+          e.checkout = !this.check
+          console.log(e.checkout)
+        }
+        )
+      },
+      filter () {
+        console.log()
+        if ((this.typeTask.isEmpty && this.typeDoc.isEmpty) || (this.typeDoc === 'Тип документа' && this.typeTask === 'Тип задания')) {
+          this.filterDoc = this.rows
+        } else if (this.typeDoc !== 'Тип документа' && this.typeTask !== 'Тип задания') {
+          this.filterDoc = this.rows.filter(e => {
+            return e.typedoc === this.typeDoc
+          }
+          ).filter(e => {
+            return e.status === this.typeTask
+          })
+        } else if (this.typeDoc !== 'Тип документа' && this.typeTask === 'Тип задания') {
+          this.filterDoc = this.rows.filter(e => {
+            return e.typedoc === this.typeDoc
+          }
+          )
+        } else if (this.typeDoc === 'Тип документа' && this.typeTask !== 'Тип задания') {
+          this.filterDoc = this.rows.filter(e => {
+            return e.status === this.typeTask
+          }
+          )
+        }
       }
+    },
+    watch: {
+      search () {
+        this.filterDoc = this.rows.filter(e => {
+          console.log(e.descriptionList.join(' ').indexOf(this.search) > -1)
+          return ~e.descriptionList.join(' ').indexOf(this.search)
+        })
+      },
+      typeDoc () {
+        this.filter()
+      },
+      typeTask () {
+        this.filter()
+      }
+    },
+    mounted () {
+      this.filterDoc = this.rows
     },
     props: [
       'tableDoc'
@@ -80,21 +413,33 @@
 </script>
 
 <style scoped>
-    .header_tab_doc{
-        color: #1e88e5;
-        font-weight: bold;
+    @import '../../assets/css/style.css';
+    .col-12{
+        padding-left: 0;
+        padding-right: 0;
     }
-    .summary{
-        font-weight: bold;
+    table {
+        margin-bottom: 0;
+        width:100%;
+        table-layout: fixed;
     }
-    .tab_star a{
-        color: #455a64;
+    .contact-list td img{
+        width: 50px;
     }
-    .tab_star {
-        color: #455a64;
+    .ml-6{
+        margin-left: 70px;
     }
-    .task-table{
-        font-size: 1.1rem;
-        line-height: 1.8em;
+    .mdi-star-outline{
+        font-size: 1.7rem;
+    }
+    .form-row{
+        padding-left: 10px;
+    }
+    .btn-filter{
+        background-color: #1e88e5;
+        color: white;
+    }
+    .mdi-star{
+        font-size: 1.7rem;
     }
 </style>

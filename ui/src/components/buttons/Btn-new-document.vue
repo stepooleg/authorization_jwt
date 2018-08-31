@@ -1,14 +1,15 @@
 <template>
     <!-- Модуль кнопки создания документа-->
     <div class="row mt-3 mb-3">
+        <div class="col-4 text-right">
         <button v-b-popover.clic.bottom.html="popoverMethod"
-                class="btn btn-outline-primary btn-primary mr-1 my-2 my-sm-0 btn-header"
+                class="btn btn-info btn-circle btn-lg waves-effect waves-light"
                 type="button"
-                title="Выберете тип документа"
-                >
-            <i class="fas fa-plus-circle fa-3x"></i>
+                title="Выберете тип документа">
+            <i class="mdi mdi-plus"></i>
         </button>
-        <div class="mt-2 create_btn">Создать</div>
+        </div>
+        <div class="mt-2 create_btn" v-show="show">Создать</div>
     </div>
 </template>
 
@@ -18,19 +19,30 @@
     methods: {
       popoverMethod () {
         return '<div>' +
-                    '<ul>' +
-                        '<li> <a href=\'#\'><i class=\'fas fa-arrow-alt-circle-right\'></i>Входящий документ </a> </li>' +
-                        '<li> <a href=\'#\'><i class=\'fas fa-arrow-alt-circle-left\'></i></i> Исходящий документ </a> </li>' +
-                        '<li> <a href=\'#\'><i class=\'fas fa-exchange-alt\'></i></i> Внутренний документ </a> </li>' +
-                        '<li> <a href=\'#\'> <i class=\'fas fa-arrow-alt-circle-down\'></i></i> Распорядительный документ </a> </li>' +
-                        '<li> <a href=\'#\'> <i class=\'fas fa-long-arrow-alt-right\'></i></i>Инициативная задача</a> </li>' +
+                    '<ul class=\'txt\'>' +
+                        '<li> <a href=\'#\'> <i class=\'fas fa-arrow-alt-circle-right\'/></i> Входящий документ </a> </li>' +
+                        '<li> <a href=\'#\'> <i class=\'fas fa-arrow-alt-circle-left\'/></i> Исходящий документ </a> </li>' +
+                        '<li> <a href=\'#\'> <i class=\'fas fa-exchange-alt\'/></i> Внутренний документ </a> </li>' +
+                        '<li> <a href=\'#\'> <i class=\'fas fa-arrow-alt-circle-down\'/></i> Распорядительный документ </a> </li>' +
+                        '<li> <a href=\'#\'> <i class=\'fas fa-long-arrow-alt-right\'/></i> Инициативная задача</a> </li>' +
                     '</ul>' +
                 '</div>'
+      }
+    },
+    computed: {
+      show () {
+        return this.$store.getters.readStatus
       }
     }
   }
 </script>
 
 <style scoped>
-
+    @import '../../assets/css/style.css';
+    .col-4{
+        padding-left: 0;
+    }
+    .txt{
+        font-size: 18px;
+    }
 </style>
