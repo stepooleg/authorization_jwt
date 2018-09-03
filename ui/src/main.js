@@ -14,7 +14,6 @@ import BtnNewDoc from './components/buttons/Btn-new-document'
 import LeftAccordionMenu from './components/navbars/Menu-left-accordeon'
 import LeftBottomAccordionMenu from './components/navbars/Menu-left-accordeon-journal'
 import NavTabs from './components/navbars/Nav-tabs'
-import DocFilter from './components/filter/Document-filter'
 import PaginatorBot from './components/pagination/Paginator'
 import TableDoc from './components/tables/TableDoc'
 import TaskBar from './components/navbars/Task-bar'
@@ -25,11 +24,22 @@ import ActionsDocument from './components/doc_elements/Actions-document'
 import BtnConnectedDocument from './components/buttons/Btn-connected-document'
 import ToggleBtnLine from './components/buttons/Btn-toggle-line'
 import DocumentFrame from './components/doc_elements/Document-frame'
+import './assets/bootstrap-select/bootstrap-select.min.css'
+import './assets/css/style.css'
+import './assets/css/colors/blue.css'
+import 'vuetify/dist/vuetify.min.css'
+import Vuetify from 'vuetify'
 const moment = require('moment')
 require('moment/locale/ru')
+var Waves = require('vue-directive-waves')
+var VueScrollTo = require('vue-scrollto')
 
+Vue.use(VueScrollTo, {
+  container: '.chat-box'})
+Vue.use(Waves)
 Vue.use(BootstrapVue)
 Vue.use(Vuex)
+Vue.use(Vuetify)
 Vue.use(require('vue-moment'), {moment})
 Vue.component('top-navbar', TopNavbar)
 Vue.component('left-sidebar', LeftSidebar)
@@ -37,7 +47,6 @@ Vue.component('btn-new-document', BtnNewDoc)
 Vue.component('left-accordeon-menu', LeftAccordionMenu)
 Vue.component('left-bottom-accordeon-menu', LeftBottomAccordionMenu)
 Vue.component('nav-tabs', NavTabs)
-Vue.component('doc-filter', DocFilter)
 Vue.component('paginator-bot', PaginatorBot)
 Vue.component('table-doc', TableDoc)
 Vue.component('task-bar', TaskBar)

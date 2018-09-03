@@ -3,12 +3,15 @@
 
     <div class="card ml-2 mb-3 small-tab" style="max-width: 20rem;">
         <div class="card-header">
-            <span class="text-muted">Срок:</span> {{cardIn.r_creation_date | moment("DD-MM-YYYY")}}
+            <span class="text-muted">Срок:</span>
+            {{cardIn.r_creation_date | moment("DD-MM-YYYY")}}
             <br>
-            <span class="text-muted">Дата согласования:</span> {{cardIn.r_modify_date | moment("DD-MM-YYYY")}}
+            <span class="text-muted">Дата согласования:</span>
+            {{cardIn.r_modify_date | moment("DD-MM-YYYY")}}
         </div>
         <div class="card-body">
-            <h5 class="card-title"> {{cardIn.r_creator_name}}
+            <h5 class="card-title">
+                {{cardIn.r_creator_name}}
                 <span class="badge badge-pill badge-success float-right">
                     {{cardIn.dss_kind}}
                 </span>
@@ -36,7 +39,6 @@
                                         </div>
                                     </div>
                                 </template>
-
                             </div>
                         </div>
                     </div>

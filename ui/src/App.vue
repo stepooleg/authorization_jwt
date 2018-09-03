@@ -8,7 +8,6 @@
 
 <script>
   import { USER_REQUEST } from './store/actions/user'
-
   export default {
     name: 'app',
     created: function () {
@@ -20,9 +19,12 @@
 </script>
 
 <style>
-  @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
-#app {
-}
+  @import 'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900';
+
+  body {
+
+    font-family:'Rubik', sans-serif;
+  }
 body{
   background-color: #eef5f9;
   font-family: "Poppins", sans-serif;

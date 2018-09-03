@@ -1,31 +1,31 @@
 <template>
     <!-- Модуль ряда кнопок центрального блока-->
-    <div class="col-5 toggle-btn-line">
+    <div class="col-6 toggle-btn-line">
         <ul>
-            <li>
-                <a href="#">
-                    <i class="fas fa-plus-square fa-2x text-blue mr-3 ac"></i>
-                </a>
+            <li class="mr-3">
+                <button href="#" class="btn">
+                    <i class="mdi mdi-plus-box-outline"></i>
+                </button>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-envelope fa-2x text-blue mr-3"></i>
-                </a>
+            <li class="mr-3">
+                <button href="#" class="btn">
+                    <i class="mdi mdi-email-outline"></i>
+                </button>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-link fa-2x text-blue mr-3"></i>
-                </a>
+            <li class="mr-3">
+                <button href="#" class="btn">
+                    <i class="mdi mdi-link-variant"></i>
+                </button>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-print fa-2x text-blue mr-3"></i>
-                </a>
+            <li class="mr-3">
+                <button href="#" class="btn">
+                    <i class="mdi mdi-printer"></i>
+                </button>
             </li>
-            <li>
-                <a href="#">
-                    <i class=" star_t far fa-star fa-2x text-blue mr-3"></i>
-                </a>
+            <li class="mr-3">
+                <button href="#" class="btn">
+                    <i class="mdi mdi-star-outline"></i>
+                </button>
             </li>
         </ul>
     </div>
@@ -46,4 +46,13 @@
         display: inline;
         list-style-type: none;
     }
+    i{
+        font-size: 1.5rem;
+    }
+
+    .btn:hover{
+        background-color: #007bff;
+        color: white;
+    }
+
 </style>

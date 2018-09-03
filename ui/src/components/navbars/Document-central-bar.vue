@@ -8,11 +8,13 @@
                         <div class="col-1">
                             <btn-connected-document></btn-connected-document>
                         </div>
-                        <div class="col-6">
-                                <paginator-bot :count-pages=5 :first-number="false"></paginator-bot>
+                        <div class="col-5">
+                            <paginator-bot
+                                    :count-pages=5
+                                    :first-number="false">
+                            </paginator-bot>
                         </div>
                         <toggle-btn-line></toggle-btn-line>
-
                     </div>
                 </div>
             </div>

@@ -3,19 +3,26 @@
     Выравнивание производим свойством класса "justify-content"
     Количество пунктов задаем через параметр countPages-->
 <template>
-        <ul class="pagination ">
+        <ul class="pagination btn-group mt-2" role="group" aria-label="First group">
             <template v-if="!firstNumber">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">1 (осн)</a>
-                </li>
+                <button
+                        type="button"
+                        class="btn prbg"
+                        href="#"
+                        tabindex="-1">1 (осн)
+                </button>
             </template>
-
-            <li class="page-item" v-for="n in countPages">
-                <a class="page-link" @click="removeNumber(n)">{{n}}</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">...</a>
-            </li>
+            <button
+                    type="button"
+                    v-for="n in countPages"
+                    class="btn btn-secondary"
+                    @click="removeNumber(n)">{{n}}
+            </button>
+            <button
+                    type="button"
+                    class="btn btn-secondary"
+                    href="#">...
+            </button>
         </ul>
 </template>
 
@@ -36,5 +43,12 @@
 </script>
 
 <style scoped>
-
+.prbg{
+    background-color: #1e88e5;
+    color: white;
+}
+::selection {
+    background-color: #1e88e5;
+    color: white;
+}
 </style>

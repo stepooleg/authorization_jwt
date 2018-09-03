@@ -1,10 +1,10 @@
 <template>
     <div>
         <top-navbar></top-navbar>
-        <div class="container-fluid">
-            <div class="row mt-2">
+        <div class="container-fluid mt-3">
+            <div class="row no-wrap">
                 <left-sidebar></left-sidebar>
-                <div class="col col-lg-10">
+                <div class="col col">
                     <div class="row">
                         <div class="col col-lg-12">
                             <nav-tabs :table-doc=tuble></nav-tabs>
@@ -26,7 +26,18 @@
       }
     },
     mounted () {
-      axios.post('http://localhost:9000/list')
+      console.log(localStorage.getItem('user-token'))
+      let url = 'http://localhost:8090/list'
+      axios.post(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'token': localStorage.getItem('user-token'),
+          'Content-Type': 'application/json'
+        },
+//        withCredentials: true,
+        credentials: 'same-origin'
+      })
           .then(response => {
             this.tuble = response.data
             console.log(this.tuble)
@@ -42,5 +53,11 @@
 </script>
 
 <style scoped>
-
+.container-fluid{
+    padding-right: 0;
+    padding-left: 0;
+}
+.no-wrap{
+  flex-wrap: nowrap
+}
 </style>

@@ -1,30 +1,30 @@
 <template>
-    <div>
-        <b-form>
-            <b-form-group id="exampleInputGroup1"
-                          label="Login:"
-                          label-for="exampleInput1"
-                          description="Введите логин">
-                <b-form-input id="exampleInput1"
-                              type="text"
-                              v-model="username"
-                              required
-                              placeholder="Введите логин">
-                </b-form-input>
-            </b-form-group>
-            <b-form-group id="exampleInputGroup2"
-                          label="Password"
-                          label-for="exampleInput2">
-                <b-form-input id="exampleInput2"
-                              type="password"
-                              v-model="password"
-                              required
-                              placeholder="Введите пароль">
-                </b-form-input>
-            </b-form-group>
-            <b-button @click="login" type="button" variant="primary">Отправить</b-button>
-        </b-form>
-    </div>
+
+    <!--Страница авторизации. Подключение происходит автоматически
+    при положительной авторизации проис-->
+    <b-container class="bv-example-row bv-example-row-flex-cols">
+        <b-row>
+            <b-col align-self="center"></b-col>
+            <b-col align-self="center" class="mt-3 text-center">
+                <h1>Авторизация...</h1>
+            </b-col>
+            <b-col align-self="center"></b-col>
+        </b-row>
+        <b-row>
+            <b-col align-self="center"></b-col>
+            <b-col align-self="center" class="mt-3 text-center">
+                <v-progress-circular
+                        :size="70"
+                        :width="7"
+                        color="purple"
+                        indeterminate
+                        v-if="loading">
+                </v-progress-circular>
+            </b-col>
+            <b-col align-self="center"></b-col>
+        </b-row>
+    </b-container>
+
 </template>
 
 <script>
@@ -33,27 +33,31 @@
     name: 'FormAuth',
     data () {
       return {
-        username: '',
-        password: ''
+        username: 'master',
+        password: 'master',
+        loading: true
       }
     },
-    methods: {
-      login: function () {
-        const { username, password } = this
-        let url = 'http://localhost:8090/auth?username=' + username + '&password=' + password
-        axios(url, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+    mounted () {
+      const { username, password } = this
+      let url = 'http://localhost:8080/ts/simple/login?name=' + username + '&password=' + password
+      axios(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
 //        withCredentials: true,
-          credentials: 'same-origin'
-        })
+        credentials: 'same-origin'
+      })
           .then(resp => {
+            this.loading = false
             const token = resp.data
-            console.log(token)
+            console.log(resp)
             if (token !== null && token !== undefined && !token.isEmpty) {
+              localStorage.setItem('user-token', token)
+             // axios.defaults.headers.common['Authorization'] = localStorage.getItem('user-token')
               this.$router.push('List')
             }
             // localStorage.setItem('user-token', resp.token)
@@ -67,7 +71,6 @@
           .catch(err => {
             console.log(err)
           })
-      }
     }
   }
 </script>

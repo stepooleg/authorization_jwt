@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './modules/user'
 import auth from './modules/auth'
+import sandbox from './modules/sandbox'
+import datadoc from './modules/dataDoc'
+import chatdoc from './modules/chatDoc'
+
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -9,7 +13,10 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   modules: {
     user,
-    auth
+    auth,
+    datadoc,
+    sandbox,
+    chatdoc
   },
   strict: debug
 })

@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-2 collapse-list">
-                        <span class="far fa-comments fa-2x"></span>
+                        <span class="mdi mdi-comment-multiple-outline fa-2x"></span>
                     </div>
                     <div class="col-10">
                         <a href="#" class="badge badge-pill badge-info font-tab-mid">
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-2 collapse-list">
-                        <span class="fas fa-check fa-2x"></span>
+                        <span class="mdi mdi-check fa-2x"></span>
                     </div>
                     <div class="col-10">
                         <a href="#" class="badge badge-pill badge-success font-tab-mid">
@@ -40,12 +40,12 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-2 collapse-list">
-                        <span class="fas fa-user-plus fa-2x"></span>
+                        <span class="mdi mdi-account-plus fa-2x"></span>
                     </div>
                     <div class="col-10">
                         <a href="#" class="badge badge-pill badge-warning font-tab-mid">
                             <i class="fas fa-angle-left"></i>
-                            Отправить на доп. согласование
+                            На доп. согласование
                         </a>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-2 collapse-list">
-                        <span class="fas fa-thumbs-down fa-2x"></span>
+                        <span class="mdi mdi-thumb-down fa-2x"></span>
                     </div>
                     <div class="col-10">
                         <a href="#" class="badge badge-pill badge-danger font-tab-mid">
@@ -76,7 +76,6 @@
 </script>
 
 <style scoped>
-
     .font-tab-mid{
         margin-top: 15px;
         font-size: 1.1rem;
@@ -99,5 +98,4 @@
         display: inline;
         list-style-type: none;
     }
-
 </style>

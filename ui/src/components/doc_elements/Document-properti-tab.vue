@@ -3,12 +3,15 @@
     <div class="col-12 bg-white ml-3">
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Статус документа:</div>
-            <div class="col-7 text-blue">На согласование</div>
+            <div class="col-7 text-blue">
+                {{statusDoc.status}}
+            </div>
         </div>
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Рег номер:</div>
             <div class="col-7 text-blue">
-                <input type="text"
+                <input v-model="statusDoc.number"
+                       type="text"
                        class="form-control"
                        id="exampleInputNumber">
             </div>
@@ -16,7 +19,8 @@
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Дата регистрации:</div>
             <div class="col-7 text-blue">
-                <input type="date"
+                <input v-model="statusDoc.date"
+                       type="date"
                        class="form-control"
                        id="exampleInputDate">
                 <i class="far fa-calendar-alt date-field-r"></i>
@@ -25,7 +29,9 @@
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">В ответ на:</div>
             <div class="col-7 text-blue mid-tab">
-                <a href="#">Вх. Иа-2299 от 21.09.2018</a>
+                <a href="#">
+                    Вх. {{statusDoc.number}}
+                </a>
             </div>
         </div>
         <div class="row mt-4 ">
@@ -49,7 +55,8 @@
         <div class="row mt-4 ">
             <ol>
                 <li>
-                    <a href="#" class="text-blue">ООО АйДи - Технологии управления
+                    <a href="#" class="text-blue">
+                        {{statusDoc.adress}}
                         <i class="fas fa-user-times fa-1x fr"></i>
                     </a>
                 </li>
@@ -70,12 +77,18 @@
                 <b>
                     <div class="row">
                         <div class="col-3">
-                            <i class="far fa-user-circle fa-3x "></i>
+                            <img
+                                    v-bind:src="statusDoc.img.src"
+                                    alt="user"
+                                    class="img-circle mr-3"
+                                    style="width: 70px"/>
                         </div>
                         <div class="col-9">
-                            <span class="summary">{{statusDoc.r_creator_name}}</span>
+                            <span class="summary">{{statusDoc.author}}</span>
                             <br>
-                            <span class="text-muted small-tab">{{statusDoc.dss_requester_name}}</span>
+                            <span v-for="(doc, ind) in statusDoc.typeList" :key="ind" class="text-muted small-tab">
+                                {{doc}}
+                            </span>
                         </div>
                     </div>
                 </b>
@@ -83,7 +96,7 @@
         </div>
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Дата создания:</div>
-            <div class="col-7 text-blue">{{statusDoc.dss_doc_date}}</div>
+            <div class="col-7 text-blue">{{statusDoc.date}}</div>
         </div>
     </div>
 </template>
@@ -93,7 +106,10 @@
     name: 'properti-document-tab',
     props: [
       'statusDoc'
-    ]
+    ],
+    mounted () {
+      console.log(this.statusDoc)
+    }
   }
 </script>
 
@@ -142,5 +158,4 @@
         margin-left: 10px;
         margin-top: 5px;
     }
-
 </style>

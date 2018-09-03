@@ -1,18 +1,18 @@
 <template>
-    <!--Модуль табов правого сайдбара-->
-    <div class="col col-3 ">
-        <div class="col-12">
-            <b-tabs class="nav nav-tabs tab-content font-tab">
-                <b-tab class="tab-content" active>
+    <!--Модуль табов левого сайдбара-->
+<div class="ml-3 mr-4" style="width: 20%">
+            <b-tabs content-class="fulltab" class="nav nav-tabs tab-content font-tab" style="width: 100%">
+                <b-tab  class="tab-content" style="width: 100%" active>
                     <template slot="title">
-                        <b>Задание</b> <i class='fas fa-times-circle'></i>
+                        <b>Задание</b>
+                        <i class='mdi mdi-close-circle-outline'></i>
                     </template>
                         <!-- Содержимое вкладки-->
-                        <div class="row bg-light">
+                        <div class="row bg-white pr-0 mr-0" >
                             <div class="col-12">
                                 <div class="row mt-2">
-                                        <div class="col-12 text-right text-blue">
-                                            <i class=" star_t far fa-star fa-1x"></i>
+                                        <div class="col-12 text-right">
+                                            <i class=" mdi mdi-star-outline"></i>
                                         </div>
                                     </div>
                                 <table-status-doc :status=statusDoc></table-status-doc>
@@ -33,7 +33,8 @@
                 </b-tab>
                 <b-tab class="tab-content">
                     <template slot="title">
-                        <b>Связанные задания</b> <i class='fas fa-times-circle'></i>
+                        <b>Связанные задания</b>
+                        <i class='mdi mdi-close-circle-outline'></i>
                     </template>
                     <div class="row mt-3">
                         <!-- Содержимое вкладки-->
@@ -42,8 +43,7 @@
                     </div>
                 </b-tab>
             </b-tabs>
-        </div>
-    </div>
+</div>
 </template>
 
 <script>
@@ -51,7 +51,10 @@
     name: 'task-bar',
     data () {
       return {
-        status: this.statusDoc
+        status: this.statusDoc,
+        fulltab: {
+          width: '100%'
+        }
       }
     },
     props: [
@@ -60,8 +63,15 @@
   }
 </script>
 
-<style scoped>
+<style>
     .text-blue{
         color: #1e88e5;
     }
+    .fulltab{
+        width: 100%;
+    }
+    .mdi-star-outline{
+        font-size: 1.5rem;
+    }
+
 </style>
