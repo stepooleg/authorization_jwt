@@ -6,50 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="803c057a-feea-475c-be11-d3aa21a9c407" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/auth/servlets/servlet/AuthServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/auth/servlets/servlet/AuthServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/auth/servlets/servlet/AuthServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/auth/servlets/servlet/AuthServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/cpd.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-basic.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-imports.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/java-unusedcode.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/pmd.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ticketservice-2.0.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ticketservice-2.0.0.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ticketservice-2.0.0/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/ticketservice-2.0.0/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ticketservice-2.0.0/WEB-INF/classes/ru/auth/servlets/servlet/AuthServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/ticketservice-2.0.0/WEB-INF/classes/ru/auth/servlets/servlet/AuthServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ticketservice-2.0.0/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/ticketservice-2.0.0/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ui/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../ui/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/pages/FormAuth.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../ui/src/components/pages/FormAuth.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/store/actions/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/store/actions/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/store/modules/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/components/store/modules/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ui/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/cpd.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/css/app.9a84687d1ccb6ddb2d7acc741f822cbd.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/css/app.9a84687d1ccb6ddb2d7acc741f822cbd.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/js/app.667b3bab45fc62753971.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/js/app.667b3bab45fc62753971.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/js/manifest.34e9ec1b7cae34bfff95.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/js/manifest.34e9ec1b7cae34bfff95.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/js/vendor.45bfe55800c1b3f886fc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/dist/static/js/vendor.45bfe55800c1b3f886fc.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/java-basic.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/java-imports.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/java-unusedcode.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/pmd.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ui/target/ui-1.0.0-SNAPSHOT.jar" beforeDir="false" />
-    </list>
+    <list default="true" id="803c057a-feea-475c-be11-d3aa21a9c407" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +18,7 @@
     <session id="-389086993">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.41" value="1" />
@@ -111,7 +68,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/auth/servlets/servlet/AuthServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
+            <state relative-caret-position="473">
               <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
@@ -221,7 +178,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-48" />
     <option name="y" value="-19" />
     <option name="width" value="1438" />
@@ -327,7 +284,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534698190960" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534698217363" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -527,16 +484,15 @@
       <workItem from="1534589704785" duration="105000" />
       <workItem from="1534589951981" duration="2723000" />
       <workItem from="1534660477447" duration="3683000" />
-      <workItem from="1534689668171" duration="5399000" />
+      <workItem from="1534689668171" duration="6062000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11910000" />
+    <option name="totallyTimeSpent" value="12573000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="916" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2636103" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -552,7 +508,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32938075" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.47694334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.47694334" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -654,7 +610,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/auth/servlets/servlet/AuthServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
+        <state relative-caret-position="473">
           <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>

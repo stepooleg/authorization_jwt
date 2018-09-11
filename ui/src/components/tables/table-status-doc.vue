@@ -1,30 +1,30 @@
 <template>
     <div class="row">
-        <div class="col-12 bg-white border-b">
+        <div class="col-lg-12 bg-white border-b">
             <table class="table table-borderless ">
                 <tr class="row">
-                    <td class="col-4 text-muted">Тип задания:</td>
-                    <td class="col-8 text-blue" ><b>{{status.status}}</b></td>
+                    <td class="col-lg-4 text-muted">Тип задания:</td>
+                    <td class="col-lg-8 text-blue" ><b>{{status.status}}</b></td>
                 </tr>
                 <tr class="row">
-                    <td class="col-4 text-muted">Статус:</td>
-                    <td class="col-8 "><b>В работе</b></td>
+                    <td class="col-lg-4 text-muted">Статус:</td>
+                    <td class="col-lg-8 "><b>В работе</b></td>
                 </tr>
                 <tr class="row">
-                    <td class="col-4 text-muted">
+                    <td class="col-lg-4 text-muted">
                         Автор:
                     </td>
-                    <td class="col-8" >
+                    <td class="col-lg-8" >
                         <b>
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-lg-12">
                                     <img
                                             v-bind:src="status.img.src"
                                             alt="user"
                                             class="img-circle mr-3"
                                             style="width: 70px"/>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-lg-12">
                                     <span class="summary">{{status.author}}</span>
                                     <br>
                                     <span class="text-muted small-tab" v-for="(line, ind) in status.typeList" :key="ind">{{line}}<br>
@@ -35,22 +35,22 @@
                     </td>
                 </tr>
                 <tr class="row">
-                    <td class="col-4 text-muted">
+                    <td class="col-lg-4 text-muted">
                         <b class="text-muted">Дата поступления:</b>
                     </td>
-                    <td class="col-8 ">
+                    <td class="col-lg-8 ">
                         <b>
                             <span class="text-muted">{{status.date | moment("DD-MM-YYYY")}}</span>
                         </b>
                     </td>
                 </tr>
                 <tr class="row">
-                    <td class="col-4 text-muted">Принято в работу:</td>
-                    <td class="col-8 "><b>{{status.date | moment("DD-MM-YYYY")}}</b></td>
+                    <td class="col-lg-4 text-muted">Принято в работу:</td>
+                    <td class="col-lg-8 "><b>{{status.date | moment("DD-MM-YYYY")}}</b></td>
                 </tr>
                 <tr class="row">
-                    <td class="col-4 text-muted">Срок:</td>
-                    <td class="col-8 text-blue">
+                    <td class="col-lg-4 text-muted">Срок:</td>
+                    <td class="col-lg-8 text-blue">
                         <div><b>{{status.dedline}}</b></div>
                         <span class="text-muted">Осталось 2 дня</span>
                     </td>

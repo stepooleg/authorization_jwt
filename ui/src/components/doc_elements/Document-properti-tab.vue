@@ -1,11 +1,41 @@
 <template>
     <!--Блок парасемров документа на вкладке Основные-->
-    <div class="col-12 bg-white ml-3">
+    <div class="col-11 bg-white ml-3">
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Статус документа:</div>
             <div class="col-7 text-blue">
                 {{statusDoc.status}}
             </div>
+        </div>
+        <div class="row mt-4 ">
+            <div class="col-5 text-muted pl-2 pr-0">Дата создания:</div>
+            <input type="text" class="form-control text-blue" :value="datepick" @click="pickdate=!pickdate">
+            <div v-if="pickdate" style="background-color: white; position:absolute; top:160px; z-index: 10000;">
+            <v-flex xs12 sm6 class="hidden-xs-only">
+                <v-date-picker style="text-transform: capitalize;" locale ="ru-RU" v-model="picker2" color="blue lighten-1" header-color="blue"></v-date-picker>
+            </v-flex>
+            </div>
+        </div>
+        <div class="row mt-4 " v-if="typeTask !=='Тип задания'" @dblclick="typeTask='Тип задания'">
+            <div class=" row message-widget contact-widget"><div class="row ml-2">
+                                            <div class="col user-img"> <img width="60px" src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                            <div class="col mail-contnet">
+                                                <h5>Pavan kumar</h5> <span class="mail-desc">info@wrappixel.com</span></div>
+                                        </div></div>
+        </div>
+        <div class="row mt-4 ">
+            
+        <select v-if="typeTask ==='Тип задания'" v-model="typeTask" class="message-widget contact-widget form-control custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Тип задания</option>
+                            <option value="На согласовании"><a href="#">
+                                            <div class="user-img"> <img src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                            <div class="mail-contnet">
+                                                <h5>Pavan kumar</h5> <span class="mail-desc">info@wrappixel.com</span></div>
+                                        </a></option>
+                            <option value="Согласованно">Согласованно</option>
+                            <option value="Выполняется">Выполняется</option>
+                            <option value="Выполненно">Выполненно</option>
+                        </select>
         </div>
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Рег номер:</div>
@@ -94,26 +124,36 @@
                 </b>
             </div>
         </div>
-        <div class="row mt-4 ">
-            <div class="col-5 text-muted pl-2 pr-0">Дата создания:</div>
-            <div class="col-7 text-blue">{{statusDoc.date}}</div>
-        </div>
+        
     </div>
 </template>
 
 <script>
   export default {
     name: 'properti-document-tab',
+    data () {
+      return {
+        picker2: '',
+        pickdate: false,
+        typeTask: 'Тип задания'
+      }
+    },
     props: [
       'statusDoc'
     ],
     mounted () {
       console.log(this.statusDoc)
+    },
+    computed: {
+      datepick () {
+        return this.picker2
+      }
     }
   }
 </script>
 
 <style scoped>
+@import '../../assets/css/style.css';
     body{
         background-color: #eef5f9;
         font-family: "Poppins", sans-serif;
@@ -158,4 +198,5 @@
         margin-left: 10px;
         margin-top: 5px;
     }
+    
 </style>

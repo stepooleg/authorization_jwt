@@ -9,15 +9,15 @@
                     </template>
                         <!-- Содержимое вкладки-->
                         <div class="row bg-white pr-0 mr-0" >
-                            <div class="col-12">
+                            <div class="col-lg-12">
                                 <div class="row mt-2">
-                                        <div class="col-12 text-right">
+                                        <div class="col-lg-12 text-right">
                                             <i class=" mdi mdi-star-outline"></i>
                                         </div>
                                     </div>
                                 <table-status-doc :status=statusDoc></table-status-doc>
                                 <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-lg-12">
                                             <hr/>
                                             <div class="form-group">
                                                 <label class="text-muted" for="exampleFormControlTextarea">Комментарий</label>

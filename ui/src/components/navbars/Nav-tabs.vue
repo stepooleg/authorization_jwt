@@ -7,7 +7,7 @@
                     <i  v-if="index > 0" @click="closeTab(index)" class='fas fa-times-circle'></i>
                 </template>
                     <!-- Содержимое вкладки-->
-                        <div class="col-12">
+                        <div class="col-lg-12">
                             <div class="row">
                                 <table-doc
                                         :tableDoc=tableDoc
