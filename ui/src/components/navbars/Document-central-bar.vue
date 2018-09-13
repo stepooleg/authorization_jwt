@@ -1,11 +1,11 @@
 <template>
      <!--Блок вывода содерщимого документа-->
-    <div class="col col-6 bg-light ">
-        <div class="col-12">
+    <div class="col col-lg-6 bg-light ">
+        <div class="col-lg-12">
             <div class="row mt-3 text-right">
-                <div class="col-12">
+                <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-lg-1">
                             <btn-connected-document></btn-connected-document>
                         </div>
                         <template v-if="statusDoc !=='create'">

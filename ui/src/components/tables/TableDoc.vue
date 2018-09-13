@@ -1,9 +1,9 @@
 <template>
-    <div class="col col-12">
-        <div class="col col-12 bg-white mt-3">
+    <div class="col col-lg-12">
+        <div class="col col-lg-12 bg-white mt-3">
             <form>
                 <div class="form-row align-items-center">
-                    <div class="col-sm-2 my-1">
+                    <div class="col-lg-2 my-1">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox"
                                    id="autoSizingCheck2">
@@ -12,7 +12,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-2 my-1">
+                    <div class="col-lg-2 my-1">
                         <label class="sr-only" for="inlineFormCustomSelect">Список
                             заданий</label>
                         <select v-model="typeTask" class="form-control custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -23,7 +23,7 @@
                             <option value="Выполненно">Выполненно</option>
                         </select>
                     </div>
-                    <div class="col-sm-2 my-1">
+                    <div class="col-lg-2 my-1">
                         <label class="sr-only" for="inlineFormCustomSelectDoc">Список
                             документов</label>
                         <select v-model="typeDoc" tabindex="1" class="form-control custom-select mr-sm-2" id="inlineFormCustomSelectDoc">
@@ -33,7 +33,7 @@
                             <option value="Входящий документ">Входящий документ</option>
                         </select>
                     </div>
-                    <div class="col-sm-4 my-1">
+                    <div class="col-lg-4 my-1">
                         <label class="sr-only" for="inlineFormInputType">Поиск</label>
                         <input v-model="search" type="text" class="form-control" id="inlineFormInputType"
                                placeholder="Поиск">

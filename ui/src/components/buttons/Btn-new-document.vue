@@ -21,8 +21,7 @@
                                         <a class="dropdown-item" href="#">Распорядительный документ</a>
                                         <a class="dropdown-item" href="#">Инициативная задача</a>
                                     </div>
-        </div>
-                                
+        </div>                                
     </div>
 </template>
 

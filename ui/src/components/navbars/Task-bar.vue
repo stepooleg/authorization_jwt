@@ -16,7 +16,7 @@
                     <v-card-text>
                     <div class="col-12">
                                 <div class="row mt-2">
-                                        <div class="col-12 text-right">
+                                        <div class="col-lg-12 text-right">
                                             <i class=" mdi mdi-star-outline"></i>
                                         </div>
                                 </div>
