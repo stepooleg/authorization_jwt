@@ -145,4 +145,11 @@
     .text-blue{
         color: #1e88e5;
     }
+    .chat-list li .chat-content{
+        width:100%
+    }
+    .chat-time{
+        display: none;
+        width: 100px
+    }
 </style>

@@ -60,48 +60,48 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(row, index) in filterDoc" :key="index" @dblclick="openToCard(index)">
+                <tr v-for="(row, index) in rows" :key="index" @dblclick="openToCard(index, row.type)">
                     <td>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" v-model="row.checkout"
                                    v-bind:id="index">
-                            <label class="form-check-label" v-bind:for="index"></label>
+                            <label class="form-check-label mt-2" v-bind:for="index"></label>
                         </div>
                     </td>
                     <td style="width: 10px">
-                        <div @click="row.stars=!row.stars">
-                            <i class=" mdi mdi-star-outline"  v-if="!row.stars"></i>
+                        <div @click="row.favourite=!row.favourite">
+                            <i class=" mdi mdi-star-outline"  v-if="!row.favourite"></i>
                             <i class=" mdi mdi-star"  v-else></i>
                         </div>
                     </td>
                     <td>
                         <div class="font-medium"><b>{{row.status}}</b></div>
-                        <div><b>Дата: {{row.date}}</b></div>
-                        <div><b>Срок {{row.dedline}}</b></div>
+                        <div><b>Дата: {{row.creation_date}}</b></div>
+                        <div><b>Срок {{row.execution_date}}</b></div>
                     </td>
                     <td>
-                        <span class="label label-danger" v-if="row.typedoc==='Приказ'">{{row.typedoc}}</span>
-                        <span class="label label-primary" v-if="row.typedoc==='Входящий документ'">{{row.typedoc}}</span>
-                        <span class="label label-success" v-if="row.typedoc==='Исходный документ'">{{row.typedoc}}</span>
-                        <div>{{row.number}}</div>
+                        <span class="label label-danger" v-if="row.type==='Приказ'">{{row.type}}</span>
+                        <span class="label label-primary" v-if="row.type==='Входящий документ'">{{row.type}}</span>
+                        <span class="label label-success" v-if="row.type==='Исходный документ'">{{row.type}}</span>
+                        <div>{{row.reg_number}}</div>
                     </td>
                     <td>
-                        <div class="font-medium"><b v-for="(line, ind) in row.descriptionList" :key="ind">
-                            {{line}}<br>
-                        </b>
-                            <div>{{row.adress}}</div>
+                        <div class="font-medium">
+                            <b>
+                                {{row.description}}<br>
+                            </b>
+                            <div>{{row.addressee}}</div>
                         </div>
                     </td>
                     <td>
                         <a href="app-contact-detail.html">
-                            <img v-bind:src="row.img.src" alt="user" class="img-circle mr-3" v-if="row.img.image"/>
-                            <span class="round mr-3" v-else>{{row.author.charAt(0)}}</span>
-                            {{row.author}}
+                            <img :src="row.creator_icon" alt="user" class="img-circle mr-3" v-if="row.creator_icon !== 'null'"/>
+                            <span class="round mr-3" v-else>{{row.creator_name.charAt(0)}}</span>
+                            {{row.creator_name}}
                         </a>
                         <div class="ml-6">
-                            <span
-                                    v-for="(name, index) in row.typeList"
-                                    :key="index">{{name}}<br>
+                            <span>
+                                {{row.creator_position}}
                             </span>
                         </div>
 
@@ -127,11 +127,11 @@
       }
     },
     methods: {
-      openToCard (id) {
+      openToCard (id, type) {
         this.$router.push(
           {
             name: 'Card',
-            params: {id}
+            params: {id, type}
           }
         )
       },
@@ -145,21 +145,21 @@
       filter () {
         console.log()
         if ((this.typeTask.isEmpty && this.typeDoc.isEmpty) || (this.typeDoc === 'Тип документа' && this.typeTask === 'Тип задания')) {
-          this.filterDoc = this.rows
+          this.rows
         } else if (this.typeDoc !== 'Тип документа' && this.typeTask !== 'Тип задания') {
-          this.filterDoc = this.rows.filter(e => {
+          this.rows.filter(e => {
             return e.typedoc === this.typeDoc
           }
           ).filter(e => {
             return e.status === this.typeTask
           })
         } else if (this.typeDoc !== 'Тип документа' && this.typeTask === 'Тип задания') {
-          this.filterDoc = this.rows.filter(e => {
+          this.rows.filter(e => {
             return e.typedoc === this.typeDoc
           }
           )
         } else if (this.typeDoc === 'Тип документа' && this.typeTask !== 'Тип задания') {
-          this.filterDoc = this.rows.filter(e => {
+          this.rows.filter(e => {
             return e.status === this.typeTask
           }
           )
@@ -168,9 +168,9 @@
     },
     watch: {
       search () {
-        this.filterDoc = this.rows.filter(e => {
-          console.log(e.descriptionList.join(' ').indexOf(this.search) > -1)
-          return ~e.descriptionList.join(' ').indexOf(this.search)
+        this.rows.filter(e => {
+          console.log(e.description.indexOf(this.search) > -1)
+          return ~e.description.indexOf(this.search)
         })
       },
       typeDoc () {
@@ -184,9 +184,7 @@
       rows () {
         return this.$store.getters.getList
       }
-    },
-    mounted () {
-      this.filterDoc = this.$store.getters.getList
+
     },
     props: [
       'tableDoc'

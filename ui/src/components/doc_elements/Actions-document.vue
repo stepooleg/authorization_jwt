@@ -78,7 +78,7 @@
 <style scoped>
     .font-tab-mid{
         margin-top: 15px;
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     hr{
         border: none;

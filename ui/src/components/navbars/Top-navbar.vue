@@ -42,7 +42,6 @@
                     <button @click="calendar" class="btn btn-outline-light mr-1 my-2 my-sm-0 btn-header" type="submit">
                         <i class="fas fa-calendar-minus fa-lg"></i>
                         <div class="notify">
-                            <span class="heartbit"></span>
                             <span class="point"></span>
                         </div>
                         <div v-if="vision" class="daterangepicker ltr single auto-apply opensright show-calendar">
@@ -562,7 +561,7 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="#"><i class="ti-settings ml-2"></i> Настройки</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off ml-2"></i> Выход</a></li>
+                            <li><a href="#" @click="logoutusr"><i class="fa fa-power-off ml-2"></i> Выход</a></li>
                         </ul>
                     </div>
                 </div>
@@ -594,7 +593,7 @@
       },
       logoutusr () {
         this.showuser = !this.showuser
-        let url = 'http://localhost:8080/ts/token/invalidate'
+        let url = 'http://localhost:8080/token/invalidate'
         axios(url, {
           method: 'GET',
           mode: 'no-cors',
@@ -668,6 +667,8 @@
 
     .nav-link {
         border-radius: 30px;
+        width: 35px;
+        height: 35px;
     }
 
     .header-col-fill {

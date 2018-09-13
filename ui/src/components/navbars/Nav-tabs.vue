@@ -1,27 +1,36 @@
 <template>
     <!--Модуль табов списка документов-->
-    <b-tabs class="nav nav-tabs tab-content">
-            <b-tab class="tab-content" v-bind:class="{active : index == 0}" v-for="(tab, index) in btabsMas" :key="index">
-                <template slot="title">
-                    <b>{{tab}}</b>
-                    <i  v-if="index > 0" @click="closeTab(index)" class='fas fa-times-circle'></i>
-                </template>
-                    <!-- Содержимое вкладки-->
-                        <div class="col-12">
-                            <div class="row">
-                                <table-doc
-                                        :tableDoc=tableDoc
-                                        :filterDoc=filterDoc></table-doc>
-                            </div>
-                        </div>
-                <paginator-bot
-                        class="pagination-lg justify-content-end"
-                        :first-number="true"
-                        :count-pages=ColPages
-                        v-on:remove="swipPage">
-                </paginator-bot>
-            </b-tab>
-    </b-tabs>
+<div>
+    <v-tabs
+            slider-color="blue" 
+            style="background-color: white;" >
+
+            <v-tab  v-bind:class="{active : index == 0}" v-for="(tab, index) in btabsMas" :key="index" ripple>
+              <b>{{tab}}</b>
+              <i class='mdi mdi-close-circle-outline ml-2'></i>
+            </v-tab>
+            <v-tab-item>
+              <v-card flat>
+                <v-card-text>
+                  <div class="col-12">
+                    <div class="row">
+                      <table-doc
+                          :tableDoc=tableDoc
+                          :filterDoc=filterDoc>
+                      </table-doc>
+                      </div>
+                    </div>
+                    <paginator-bot
+                      class="pagination-lg justify-content-end"
+                      :first-number="true"
+                      :count-pages=ColPages
+                      v-on:remove="swipPage">
+                    </paginator-bot>
+                  </v-card-text>
+              </v-card>
+            </v-tab-item>
+    </v-tabs>
+    </div>
 </template>
 
 <script>

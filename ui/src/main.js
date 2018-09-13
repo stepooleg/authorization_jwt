@@ -1,5 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import BootstrapVue from 'bootstrap-vue'
@@ -24,6 +25,7 @@ import ActionsDocument from './components/doc_elements/Actions-document'
 import BtnConnectedDocument from './components/buttons/Btn-connected-document'
 import ToggleBtnLine from './components/buttons/Btn-toggle-line'
 import DocumentFrame from './components/doc_elements/Document-frame'
+import DatePicker from 'vue-md-date-picker'
 import './assets/bootstrap-select/bootstrap-select.min.css'
 import './assets/css/style.css'
 import './assets/css/colors/blue.css'
@@ -35,11 +37,13 @@ var Waves = require('vue-directive-waves')
 var VueScrollTo = require('vue-scrollto')
 
 Vue.use(VueScrollTo, {
-  container: '.chat-box'})
+  container: '.chat-box'
+})
 Vue.use(Waves)
 Vue.use(BootstrapVue)
 Vue.use(Vuex)
 Vue.use(Vuetify)
+Vue.use(DatePicker)
 Vue.use(require('vue-moment'), {moment})
 Vue.component('top-navbar', TopNavbar)
 Vue.component('left-sidebar', LeftSidebar)

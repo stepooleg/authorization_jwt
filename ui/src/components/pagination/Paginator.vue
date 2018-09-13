@@ -6,18 +6,19 @@
         <ul class="pagination btn-group mt-2" role="group" aria-label="First group">
             <template v-if="!firstNumber">
                 <button
-                        type="button"
-                        class="btn prbg"
-                        href="#"
-                        tabindex="-1">1 (осн)
+                    type="button"
+                    class="btn prbg"
+                    href="#"
+                    tabindex="-1">1 (осн)
                 </button>
             </template>
-            <button
+                <button
                     type="button"
-                    v-for="n in countPages"
+                    v-for="(n, ind) in 5"
                     class="btn btn-secondary"
+                    :key="ind"
                     @click="removeNumber(n)">{{n}}
-            </button>
+                </button>
             <button
                     type="button"
                     class="btn btn-secondary"

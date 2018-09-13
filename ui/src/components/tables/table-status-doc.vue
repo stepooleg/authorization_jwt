@@ -4,8 +4,12 @@
             <table class="table table-borderless ">
                 <tr class="row">
                     <td class="col-4 text-muted">Тип задания:</td>
-                    <td class="col-8 text-blue" ><b>{{status.status}}</b></td>
+                    <td class="col-8 text-blue" >
+                        <b v-if="status !== 'create'">{{status.status}}</b>
+                        <b v-else>{{defoltTask}}</b>
+                        </td>
                 </tr>
+                <template v-if="status.type == 'Входящий документ' || status.type == 'create'">
                 <tr class="row">
                     <td class="col-4 text-muted">Статус:</td>
                     <td class="col-8 "><b>В работе</b></td>
@@ -18,11 +22,13 @@
                         <b>
                             <div class="row">
                                 <div class="col-12">
+                                    <template v-if="status.img === '' || status.img == undefined"></template>
                                     <img
-                                            v-bind:src="status.img.src"
+                                            :src="status.img"
                                             alt="user"
                                             class="img-circle mr-3"
-                                            style="width: 70px"/>
+                                            style="width: 70px"
+                                            v-else/>
                                 </div>
                                 <div class="col-12">
                                     <span class="summary">{{status.author}}</span>
@@ -55,6 +61,7 @@
                         <span class="text-muted">Осталось 2 дня</span>
                     </td>
                 </tr>
+                </template>
             </table>
         </div>
     </div>
@@ -63,19 +70,34 @@
 <script>
   export default {
     name: 'table-status-doc',
+    data () {
+      return {
+        defoltTask: 'По данному документу нет заданий'
+      }
+    },
     props: [
       'status'
-    ]
+    ],
+    mounted () {
+      console.log(this.status)
+    }
   }
 </script>
 
 <style scoped>
+    body{
+        font-size: 1rem;
+    }
+    .text-muted{
+        font-size: 1rem;
+    }
 
     .text-blue{
         color: #1e88e5;
+        font-size: 1rem;
     }
     .small-tab{
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     hr{
         border: none;

@@ -1,25 +1,28 @@
 <template>
-    <!-- Модуль кнопки связанных документов-->
-        <span v-b-popover.clic.bottom.html="popoverMethod"
-                class="mr-1 my-2 my-sm-0"
-                title="Выберете связанный документ:">
-             <i class="btn mdi mdi-menu "></i>
-        </span>
+        <div class="col-4 text-right mt-2" v-bind:class="{'show': views}" >
+        <button @click="views=!views"
+        aria-haspopup="true" 
+                data-toggle="dropdown"
+                class="btn btn-info mdi mdi-menu waves-effect waves-light"
+                type="button"
+                title="Выберете тип документа">
+        </button>
+        <div class="dropdown-menu animated flipInX" :class="{'show': views}" x-placement="bottom-start" style="z-index: 100000; position: absolute; transform: translate3d(0px, 37px, 0px); top: 30px; left: 50px; will-change: transform;">
+                                        <a class="dropdown-item" href="#">Основной контент</a>
+                                        <a class="dropdown-item" href="#">Приложение 1.docx</a>
+                                        <a class="dropdown-item" href="#">Проект дополнительного</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Приложение 5.xls</a>
+                                    </div>
+        </div>
 </template>
 
 <script>
   export default {
     name: 'btn-new-document',
-    methods: {
-      popoverMethod () {
-        return '<div>' +
-                    '<ul>' +
-                        '<li> <a href=\'#\'> <i class=\'fas fa-arrow-alt-circle-right\'> </i>  Основной контент </a> </li>' +
-                        '<li> <a href=\'#\'> <i class=\'fas fa-arrow-alt-circle-left\'> </i>  Приложение 1.docx </a> </li>' +
-                        '<li> <a href=\'#\'> <i class=\'fas fa-exchange-alt\'> </i>  Проект дополнительного </a> </li>' +
-                        '<li> <a href=\'#\'> <i class=\'fas fa-arrow-alt-circle-down\'> </i>  Приложение 5.xls </a> </li>' +
-                    '</ul>' +
-                '</div>'
+    data () {
+      return {
+        views: false
       }
     }
   }

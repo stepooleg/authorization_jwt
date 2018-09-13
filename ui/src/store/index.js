@@ -5,6 +5,7 @@ import auth from './modules/auth'
 import sandbox from './modules/sandbox'
 import datadoc from './modules/dataDoc'
 import chatdoc from './modules/chatDoc'
+import createindoc from './modules/createinDoc'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,9 @@ export default new Vuex.Store({
     auth,
     datadoc,
     sandbox,
-    chatdoc
+    chatdoc,
+    createindoc
+
   },
   strict: debug
 })

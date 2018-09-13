@@ -1,6 +1,6 @@
 <template>
     <!--Блок парасемров документа на вкладке Основные-->
-    <div class="col-12 bg-white ml-3">
+    <div class="col-11 bg-white ml-3">
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Статус документа:</div>
             <div class="col-7 text-blue">
@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-3">
                             <img
-                                    v-bind:src="statusDoc.img.src"
+                                    :src="statusDoc.img"
                                     alt="user"
                                     class="img-circle mr-3"
                                     style="width: 70px"/>

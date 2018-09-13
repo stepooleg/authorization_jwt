@@ -1,20 +1,26 @@
 <template>
     <!--Правый раздел с табами "Основные, Лист согласования и т.д."-->
     <div class="col col-3 " style="font-size: 1.2rem;">
-        <div class="col-12">
-            <nav class="bg-white">
-                <b-tabs class="nav nav-tabs tab-content font-tab">
-                    <b-tab class="tab-content" active>
-                        <template slot="title">
-                            <b>Основные</b>
-                            <i class='mdi mdi-close-circle-outline'></i>
-                        </template>
-                        <!-- Содержимое вкладки-->
-                        <div
-                                class="tab-pane fade show active bg-white"
-                                id="nav-basic-r"
-                                role="tabpanel"
-                                aria-labelledby="nav-basic-tab">
+        <div class="col-12 pr-0">
+            <v-tabs
+            slider-color="blue" style="background-color: white;">
+                <v-tab  :key=1 ripple>
+                    <b>Основные</b>
+                </v-tab>
+                <v-tab  :key=2 ripple>
+                    <b v-if="statusDoc.type === 'Входящий документ'">История</b>
+                    <b v-else-if="statusDoc === 'create'">История</b>
+                    <b v-else>Лист согласования</b>  
+                </v-tab>
+                <v-tab  :key=3 ripple>
+                    <b>Аудит</b>
+                   
+                </v-tab>
+                <v-tab  :key=4 ripple>
+                    <b>...</b>
+                    
+                </v-tab>
+                 <v-tab-item>  
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-12 bg-white text-right text-blue">
@@ -22,93 +28,29 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2">
-                                    <properti-document-tab :status-doc=statusDoc></properti-document-tab>
+                                    <document-in-tab v-if="statusDoc.type === 'Входящий документ'" :status-doc=statusDoc></document-in-tab>
+                                    <document-in-tab v-if="statusDoc === 'create'" :status-doc=statusDoc></document-in-tab>
+                                    <properti-document-tab v-else :status-doc=statusDoc></properti-document-tab>
                                 </div>
                             </div>
-                        </div>
-                    </b-tab>
-
-                    <b-tab class="tab-content">
-                        <template slot="title">
-                            <b>Лист согласования</b>
-                            <i class='mdi mdi-close-circle-outline'></i>
-                        </template>
-                        <!-- Содержимое вкладки-->
-                        <div
-                                class="tab-pane fade show active bg-white"
-                                role="tabpanel"
-                                aria-labelledby="nav-basic-tab">
-                            <div class="col-12">
-                                <div class="row">
+                 </v-tab-item>
+                 <v-tab-item>
+                                <div class="col-12">
+                                    <div class="row">
                                         <document-log :doc-card-in=statusDoc></document-log>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </b-tab>
-
-                    <b-tab class="tab-content">
-                        <template slot="title">
-                            <b>История</b> <i class='mdi mdi-close-circle-outline'></i>
-                        </template>
-                        <!-- Содержимое вкладки-->
-                        <div class="row bg-white">
-                        </div>
-                    </b-tab>
-
-                    <b-tab class="tab-content">
-                        <template slot="title">
-                            <b>Аудит</b>
-                            <i class='mdi mdi-close-circle-outline'></i>
-                        </template>
-                        <!-- Содержимое вкладки-->
-                        <div class="row bg-light">
-                        </div>
-                    </b-tab>
-
-                    <b-tab class="tab-content">
-                        <template slot="title">
-                            <b>...</b> <i class='mdi mdi-close-circle-outline'></i>
-                        </template>
-                        <!-- Содержимое вкладки-->
-                        <div class="row bg-light">
-                        </div>
-                    </b-tab>
-                </b-tabs>
-
-            </nav>
-            <div class="tab-content bg-light font-tab" id="nav-tabContent-rs">
-
-
-                <div
-                        class="tab-pane fade"
-                        id="nav-history-r"
-                        role="tabpanel"
-                        aria-labelledby="nav-historyt-tab">Contact
-                    <br>
-                    <br>
-                </div>
-                <div
-                        class="tab-pane fade"
-                        id="nav-audit-r"
-                        role="tabpanel"
-                        aria-labelledby="nav-audit-tab">Contact
-                    <br>
-                    <br>
-                </div>
-                <div
-                        class="tab-pane fade"
-                        id="nav-all-r"
-                        role="tabpanel"
-                        aria-labelledby="nav-all-tab">Contact
-                    <br>
-                    <br>
-                </div>
-            </div>
+                 </v-tab-item>
+                 <v-tab-item></v-tab-item>
+                 <v-tab-item></v-tab-item>
+                 <v-tab-item></v-tab-item>
+            </v-tabs>
         </div>
     </div>
 </template>
 
 <script>
+  import DocumentInTab from '../doc_elements/Document-in-tab'
   import PropertiDocumentTab from '../doc_elements/Document-properti-tab'
   import DocumentLog from '../doc_elements/Document-log'
   export default {
@@ -123,7 +65,8 @@
     ],
     components: {
       DocumentLog,
-      PropertiDocumentTab
+      PropertiDocumentTab,
+      DocumentInTab
     }
   }
 </script>
@@ -134,6 +77,7 @@
     }
     .text-blue{
         color: #1e88e5;
+        font-size: 1rem;
     }
     hr{
         border: none;
@@ -157,5 +101,5 @@
     i{
         font-size: 1.5rem;
     }
-
+    
 </style>

@@ -2,27 +2,27 @@
     <!-- Модуль ряда кнопок центрального блока-->
     <div class="col-6 toggle-btn-line">
         <ul>
-            <li class="mr-3">
+            <li class="mr-2">
                 <button href="#" class="btn">
                     <i class="mdi mdi-plus-box-outline"></i>
                 </button>
             </li>
-            <li class="mr-3">
+            <li class="mr-2">
                 <button href="#" class="btn">
                     <i class="mdi mdi-email-outline"></i>
                 </button>
             </li>
-            <li class="mr-3">
+            <li class="mr-2">
                 <button href="#" class="btn">
                     <i class="mdi mdi-link-variant"></i>
                 </button>
             </li>
-            <li class="mr-3">
+            <li class="mr-2">
                 <button href="#" class="btn">
                     <i class="mdi mdi-printer"></i>
                 </button>
             </li>
-            <li class="mr-3">
+            <li class="mr-2">
                 <button href="#" class="btn">
                     <i class="mdi mdi-star-outline"></i>
                 </button>

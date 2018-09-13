@@ -9,34 +9,41 @@
                             <left-sidebar></left-sidebar>
                         </div>
                         <div class="col col-lg-12 pl-0 margin-70">
-                            <b-tabs class="nav nav-tabs tab-content font-tab">
-                                <b-tab
-                                        :title ="statusDoc.dss_doc_number"
-                                        :titleLinkClass="'mdi mdi-close-circle-outline'"
-                                        class="tab-content"
-                                        active>
-                                    <div class="row mt-3">
-                                        <!-- Содержимое вкладки-->
-                                        <div class="row mt-3">
-                                            <task-bar :status-doc=onedoc></task-bar>
-                                            <central-document-bar></central-document-bar>
-                                            <properti-document-bar :status-doc=onedoc></properti-document-bar>
-                                        </div>
-                                    </div>
-                                </b-tab>
-                                <b-tab>
-                                    <template slot="title">
-                                        <b>ВСХ ИА-2200</b>
-                                        <i class='mdi mdi-close-circle-outline'></i>
-                                    </template>
-                                </b-tab>
-                                <b-tab>
-                                    <template slot="title">
-                                        <b>ИСХ ВР-2200</b>
-                                        <i class='mdi mdi-close-circle-outline'></i>
-                                    </template>
-                                </b-tab>
-                            </b-tabs>
+                            <div>
+                              <v-tabs
+                                v-model="active"
+                                slider-color="blue"
+                              >
+                                <v-tab
+                                  v-for="n in 3"
+                                  :key="n"
+                                  ripple
+                                >
+                                <template v-if="n === 1">
+                                   {{ statusDoc }} <i class='mdi mdi-close-circle-outline ml-2'></i>
+                                </template>
+
+                                <template v-else>
+                                  {{rows[n].number}} <i class='mdi mdi-close-circle-outline ml-2'></i>
+                                </template> 
+
+                                </v-tab>
+                                <v-tab-item
+                                  v-for="n in 3"
+                                  :key="n"
+                                >
+                                  <v-card flat>
+                                    <v-card-text> <!-- Содержимое вкладки-->
+                                      <div class="row mt-3">
+                                      <task-bar :status-doc=onedoc></task-bar>
+                                      <central-document-bar></central-document-bar>
+                                      <properti-document-bar :status-doc=onedoc></properti-document-bar>
+                                      </div>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-tab-item>
+                              </v-tabs>
+                            </div>                               
                         </div>
                     </div>
                 </div>
@@ -53,6 +60,7 @@
     data () {
       return {
         statusDoc: 'Мои задания',
+        active: null,
         rows: [
           {
             checkout: false,
@@ -276,7 +284,8 @@
             ]
           }
         ],
-        onedoc: ''
+        onedoc: '',
+        typedoc: ''
       }
     },
     mounted () {
@@ -296,8 +305,10 @@
 </script>
 
 <style scoped>
+
     body{
-        font-size: 1.2rem;
+        font-size: 1rem;
+        text-transform: none! important;
     }
     .col-1 {
         padding-right: 0;
@@ -309,4 +320,5 @@
         background-color: #1e88e5;
         color: white;
     }
+
 </style>

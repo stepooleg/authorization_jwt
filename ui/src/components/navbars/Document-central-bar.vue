@@ -8,6 +8,7 @@
                         <div class="col-1">
                             <btn-connected-document></btn-connected-document>
                         </div>
+                        <template v-if="statusDoc !=='create'">
                         <div class="col-5">
                             <paginator-bot
                                     :count-pages=5
@@ -15,10 +16,14 @@
                             </paginator-bot>
                         </div>
                         <toggle-btn-line></toggle-btn-line>
+                        </template>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" v-if="statusDoc ==='create'">
+                <document-frame-create></document-frame-create>
+            </div>
+            <div class="row" v-else>
                 <document-frame></document-frame>
             </div>
         </div>
@@ -26,9 +31,16 @@
 </template>
 
 <script>
-  export default {
-    name: 'central-document-bar'
+import DocumentFrameCreate from '../doc_elements/Document-frame-create'
+export default {
+  name: 'central-document-bar',
+  props: [
+    'statusDoc'
+  ],
+  components: {
+    DocumentFrameCreate
   }
+}
 </script>
 
 <style scoped>

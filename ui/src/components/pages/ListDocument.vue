@@ -27,12 +27,12 @@
     },
     mounted () {
       console.log(localStorage.getItem('user-token'))
-      let url = 'http://localhost:8090/list'
-      axios.post(url, {
-        method: 'POST',
+      let url = 'http://localhost:8080/tasks/all'
+      axios(url, {
+        method: 'GET',
         mode: 'no-cors',
         headers: {
-          'token': localStorage.getItem('user-token'),
+          'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
 //        withCredentials: true,
@@ -40,7 +40,9 @@
       })
           .then(response => {
             this.tuble = response.data
-            console.log(this.tuble)
+            this.$store.commit('addList', response.data)
+            console.log(response.data)
+            console.log(this.$store.getters.getList)
           }
             // handle success
           )

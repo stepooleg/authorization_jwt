@@ -20,6 +20,7 @@
 
 <style>
   @import 'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900';
+  .v-tabs__div{ text-transform: none !important; }
 
   body {
 
