@@ -111,7 +111,77 @@
             <div class="col-12 text-muted pl-2 pr-0">
                 <div class="form-group">
                     <label class="control-label">Автор/Организация</label>
-                    <input v-model="creator_name" type="text" id="creator_name" class="form-control" placeholder="">
+                    <select 
+                        v-if="typeDoc ==='Имя автора'" 
+                        v-model="typeDoc" 
+                        class="
+                            message-widget 
+                            contact-widget 
+                            form-control 
+                            custom-select 
+                            mr-sm-2" 
+                        id="inlineFormCustomSelect">
+                            <option selected>Имя автора</option>
+                            <option value="Рогов Дмитрий Николаевич">
+                                <a href="#">
+                                    <div class="user-img"> 
+                                        <img 
+                                            src="../../assets/images/users/4.jpg" 
+                                            alt="user" 
+                                            class="img-circle"> 
+                                        <span class="profile-status online pull-right"></span> 
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5>Рогов Дмитрий Николаевич</h5> 
+                                        <span class="mail-desc">info@wrappixel.com</span>
+                                    </div>
+                                </a>
+                            </option>
+                            <option value="Егоров Михаил Александрович">
+                                <a href="#">
+                                    <div class="user-img"> 
+                                        <img 
+                                            src="../../assets/images/users/1.jpg" 
+                                            alt="user" 
+                                            class="img-circle"> 
+                                        <span class="profile-status online pull-right"></span> 
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5>Егоров Михаил Александрович</h5> 
+                                        <span class="mail-desc">egorov@wrappixel.com</span>
+                                    </div>
+                                </a>
+                            </option>
+                            <option value="СЭДО">Выполняется</option>
+                    </select>
+                    <div class="row" v-if="typeDoc ==='Рогов Дмитрий Николаевич'" @dblclick="typeDoc='Имя автора'">
+                        <div class=" row message-widget contact-widget">
+                            <div class="row ml-2">
+                                <div class="col-3 user-img"> 
+                                    <img width="50px" src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> 
+                                    <span class="profile-status online pull-right"></span> 
+                                </div>
+                                <div class="col mail-contnet">
+                                    <h5>Рогов Дмитрий Николаевич</h5> 
+                                        <span class="mail-desc">info@wrappixel.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-if="typeDoc ==='Егоров Михаил Александрович'" @dblclick="typeDoc='Имя автора'">
+                        <div class=" row message-widget contact-widget">
+                            <div class="row ml-2">
+                                <div class="col-3 user-img"> 
+                                    <img width="50px" src="../../assets/images/users/1.jpg" alt="user" class="img-circle"> 
+                                    <span class="profile-status online pull-right"></span> 
+                                </div>
+                                <div class="col mail-contnet">
+                                    <h5>Егоров Михаил Александрович</h5> 
+                                        <span class="mail-desc">egorov@wrappixel.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <small class="form-control-feedback"> </small> 
                     <label class="control-label"></label>
                     <input v-model="organization" type="text" id="organization" class="form-control" placeholder="">
@@ -157,6 +227,7 @@
     name: 'properti-document-tab',
     data () {
       return {
+        typeDoc: 'Имя автора',
         pickdate: false,
         pickdateanswer: false,
         reg_number: '',
@@ -238,6 +309,7 @@
 </script>
 
 <style scoped>
+@import '../../assets/css/style.css';
     body{
         background-color: #eef5f9;
         font-family: "Poppins", sans-serif;

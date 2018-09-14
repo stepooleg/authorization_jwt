@@ -6,7 +6,7 @@ import sandbox from './modules/sandbox'
 import datadoc from './modules/dataDoc'
 import chatdoc from './modules/chatDoc'
 import createindoc from './modules/createinDoc'
-
+import datalistindoc from './modules/dataListInDoc'
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -18,8 +18,8 @@ export default new Vuex.Store({
     datadoc,
     sandbox,
     chatdoc,
-    createindoc
-
+    createindoc,
+    datalistindoc
   },
   strict: debug
 })

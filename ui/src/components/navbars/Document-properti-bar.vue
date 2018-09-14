@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="row mt-2">
                                     <document-in-tab v-if="statusDoc.type === 'Входящий документ'" :status-doc=statusDoc></document-in-tab>
-                                    <document-in-tab v-if="statusDoc === 'create'" :status-doc=statusDoc></document-in-tab>
+                                    <document-in-tab v-else-if="statusDoc === 'create'" :status-doc=statusDoc></document-in-tab>
                                     <properti-document-tab v-else :status-doc=statusDoc></properti-document-tab>
                                 </div>
                             </div>
