@@ -4,7 +4,7 @@
         <div class="container-fluid mt-3">
             <div class="row no-wrap">
                 <left-sidebar></left-sidebar>
-                <div class="col col">
+                <div class="col ml-2">
                     <div class="row">
                         <div class="col col-lg-12">
                             <nav-tabs :table-doc=tuble></nav-tabs>
@@ -27,13 +27,14 @@
     },
     mounted () {
       console.log(localStorage.getItem('user-token'))
-      let url = 'http://localhost:8080/tasks/all'
+      let url = process.env.REST_SERV + 'tasks/all'
       axios(url, {
         method: 'GET',
         mode: 'no-cors',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Token': localStorage.getItem('user-token')
         },
 //        withCredentials: true,
         credentials: 'same-origin'

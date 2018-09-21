@@ -4,7 +4,7 @@
             <form>
                 <div class="form-row align-items-center">
                     <div class="col-lg-2 my-1">
-                        <div class="form-check">
+                        <div class="form-check pl-1">
                             <input class="form-check-input" type="checkbox"
                                    id="autoSizingCheck2">
                             <label class="form-check-label" for="autoSizingCheck2">

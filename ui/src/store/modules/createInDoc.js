@@ -1,21 +1,22 @@
 const state = { ddt_incoming: {
-  'reg_number': 'dgdg',
-  'reg_date': '',
-  'out_number': '',
-  'out_date': '',
-  'answer_doc': '',
-  'answer_date': '',
-  'pages': '',
-  'creator_name': '',
-  'organization': '',
-  'addressee': '',
-  'type': '',
-  'status': '',
-  'application': '',
-  'description': '',
-  'content': '',
-  'resolution': '',
-  'annotation': ''
+  dss_reg_number: 'dgdg',
+  dsdt_reg_date: '',
+  dss_crsp_reg_number: '',
+  dsdt_crsp_reg_date: '',
+  dss_initial_reg_number: '',
+  dsdt_initial_reg_date: '',
+  dsi_number_of_page: '',
+  dss_crsp_name: '',
+  dsid_crsp_org: '',
+  dss_adrs_name: '',
+  dss_reg_name: '',
+  dss_note: '',
+  dsi_number_of_appendix: '',
+  dss_description: '',
+  dsc_content: '',
+  dss_crsp_resolution: '',
+  dsid_document_kind: '',
+  dsid_stamp: ''
 }
 }
 const getters = {
@@ -23,55 +24,55 @@ const getters = {
 }
 const mutations = {
   addIncomingReg_number: (state, payload) => {
-    state.ddt_incoming.reg_number = payload.reg_number
+    state.ddt_incoming.dss_reg_number = payload.reg_number
   },
   addIncomingReg_date: (state, payload) => {
-    state.ddt_incoming.reg_date = payload.reg_date
+    state.ddt_incoming.dsdt_reg_date = payload.reg_date
   },
   addIncomingOut_number: (state, payload) => {
-    state.ddt_incoming.out_number = payload.out_number
+    state.ddt_incoming.dss_crsp_reg_number = payload.out_number
   },
   addIncomingOut_date: (state, payload) => {
-    state.ddt_incoming.out_date = payload.out_date
+    state.ddt_incoming.dsdt_crsp_reg_date = payload.out_date
   },
   addIncomingAnswer_doc: (state, payload) => {
-    state.ddt_incoming.answer_doc = payload.answer_doc
+    state.ddt_incoming.dss_initial_reg_number = payload.answer_doc
   },
   addIncomingAnswer_date: (state, payload) => {
-    state.ddt_incoming.answer_date = payload.answer_date
+    state.ddt_incoming.dsdt_initial_reg_date = payload.answer_date
   },
   addIncomingPages: (state, payload) => {
-    state.ddt_incoming.pages = payload.pages
+    state.ddt_incoming.dsi_number_of_page = payload.pages
   },
   addIncomingCreator_name: (state, payload) => {
-    state.ddt_incoming.creator_name = payload.creator_name
+    state.ddt_incoming.dss_crsp_name = payload.creator_name
   },
   addIncomingOrganization: (state, payload) => {
-    state.ddt_incoming.organization = payload.organization
+    state.ddt_incoming.dsid_crsp_org = payload.organization
   },
   addIncomingAddressee: (state, payload) => {
-    state.ddt_incoming.addressee = payload.addressee
+    state.ddt_incoming.dss_adrs_name = payload.addressee
   },
   addIncomingType: (state, payload) => {
-    state.ddt_incoming.type = payload.type
+    state.ddt_incoming.dsid_document_kind = payload.type
   },
   addIncomingStatus: (state, payload) => {
-    state.ddt_incoming.status = payload.status
+    state.ddt_incoming.dsid_stamp = payload.status
   },
   addIncomingApplication: (state, payload) => {
-    state.ddt_incoming.application = payload.application
+    state.ddt_incoming.dss_note = payload.application
   },
   addIncomingDescription: (state, payload) => {
-    state.ddt_incoming.description = payload.description
+    state.ddt_incoming.dss_description = payload.description
   },
   addIncomingContent: (state, payload) => {
-    state.ddt_incoming.content = payload.content
+    state.ddt_incoming.dsc_content = payload.content
   },
   addIncomingResolution: (state, payload) => {
-    state.ddt_incoming.resolution = payload.resolution
+    state.ddt_incoming.dss_crsp_resolution = payload.resolution
   },
   addIncomingAnnotation: (state, payload) => {
-    state.ddt_incoming.annotation = payload.annotation
+    state.ddt_incoming.dss_reg_name = payload.annotation
   }
 }
 export default {

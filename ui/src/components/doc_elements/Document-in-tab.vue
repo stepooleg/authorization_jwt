@@ -15,8 +15,11 @@
                         v-model="reg_number" 
                         type="text" 
                         id="Number" 
-                        class="form-control" 
+                        class="form-control is-invalid" 
                         placeholder="123">
+                        <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
                     <small class="form-control-feedback"> </small> 
                 </div>
             </div>
@@ -260,7 +263,7 @@
     watch: {
       reg_number () {
         this.$store.commit('addIncomingReg_number', {reg_number: this.reg_number})
-        console.log(this.$store.getters.getIncoming.reg_number)
+        console.log(this.$store.getters.getIncoming.dss_reg_number)
       },
       reg_data () {
         this.$store.commit('addIncomingReg_data', {reg_data: this.reg_data})

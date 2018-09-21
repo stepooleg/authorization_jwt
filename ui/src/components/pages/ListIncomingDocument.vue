@@ -27,13 +27,14 @@
     },
     mounted () {
       console.log(localStorage.getItem('user-token'))
-      let url = 'http://localhost:8080/ddt_incoming/list'
+      let url = process.env.REST_SERV + 'ddt_incoming/list'
       axios(url, {
         method: 'GET',
         mode: 'no-cors',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Token': localStorage.getItem('user-token')
         },
 //        withCredentials: true,
         credentials: 'same-origin'

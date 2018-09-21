@@ -1,12 +1,12 @@
 <template>
      <!--Блок вывода содерщимого документа-->
-    <div class="col col-lg-6 bg-light ">
+    <div class="col ">
         <div class="col-lg-12">
             <div class="row mt-3 text-right">
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-1">
-                            <btn-connected-document></btn-connected-document>
+                            <btn-connected-document v-if="statusDoc !=='create'"></btn-connected-document>
                         </div>
                         <template v-if="statusDoc !=='create'">
                         <div class="col-5">

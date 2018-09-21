@@ -23,7 +23,7 @@
   .v-tabs__div{ text-transform: none !important; }
 
   body {
-
+    min-height: 600px;
     font-family:'Rubik', sans-serif;
   }
 body{

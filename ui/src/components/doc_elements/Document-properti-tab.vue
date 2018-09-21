@@ -10,32 +10,46 @@
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Дата создания:</div>
             <input type="text" class="form-control text-blue" :value="datepick" @click="pickdate=!pickdate">
-            <div v-if="pickdate" style="background-color: white; position:absolute; top:160px; z-index: 10000;">
+            <div v-if="pickdate" style="background-color: white; position:absolute; right: 0px; top:135px; z-index: 10000;">
             <v-flex xs12 sm6 class="hidden-xs-only">
                 <v-date-picker style="text-transform: capitalize;" locale ="ru-RU" v-model="picker2" color="blue lighten-1" header-color="blue"></v-date-picker>
             </v-flex>
             </div>
         </div>
         <div class="row mt-4 " v-if="typeTask !=='Тип задания'" @dblclick="typeTask='Тип задания'">
-            <div class=" row message-widget contact-widget"><div class="row ml-2">
-                                            <div class="col user-img"> <img width="60px" src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                            <div class="col mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">info@wrappixel.com</span></div>
-                                        </div></div>
+            <div class=" row message-widget contact-widget">
+                <div class="row ml-2">
+                    <div class="col user-img"> 
+                        <img width="60px" src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> 
+                            <span class="profile-status online pull-right"></span> 
+                    </div>
+                    <div class="col mail-contnet">
+                        <h5>Pavan kumar</h5> 
+                            <span class="mail-desc">info@wrappixel.com</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row mt-4 ">
             
         <select v-if="typeTask ==='Тип задания'" v-model="typeTask" class="message-widget contact-widget form-control custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected>Тип задания</option>
-                            <option value="На согласовании"><a href="#">
-                                            <div class="user-img"> <img src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">info@wrappixel.com</span></div>
-                                        </a></option>
-                            <option value="Согласованно">Согласованно</option>
-                            <option value="Выполняется">Выполняется</option>
-                            <option value="Выполненно">Выполненно</option>
-                        </select>
+            <option selected>Тип задания</option>
+            <option value="На согласовании">
+                <a href="#">
+                    <div class="user-img"> 
+                        <img src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> 
+                            <span class="profile-status online pull-right"></span> 
+                    </div>
+                    <div class="mail-contnet">
+                        <h5>Pavan kumar</h5> 
+                        <span class="mail-desc">info@wrappixel.com</span>
+                    </div>
+                </a>
+            </option>
+            <option value="Согласованно">Согласованно</option>
+            <option value="Выполняется">Выполняется</option>
+            <option value="Выполненно">Выполненно</option>
+        </select>
         </div>
         <div class="row mt-4 ">
             <div class="col-5 text-muted pl-2 pr-0">Рег номер:</div>
@@ -108,10 +122,10 @@
                     <div class="row">
                         <div class="col-3">
                             <img
-                                    :src="statusDoc.img"
-                                    alt="user"
-                                    class="img-circle mr-3"
-                                    style="width: 70px"/>
+                                :src="statusDoc.img"
+                                alt="user"
+                                class="img-circle mr-3"
+                                style="width: 70px"/>
                         </div>
                         <div class="col-9">
                             <span class="summary">{{statusDoc.author}}</span>
@@ -198,5 +212,4 @@
         margin-left: 10px;
         margin-top: 5px;
     }
-    
 </style>

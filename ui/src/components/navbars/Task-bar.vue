@@ -1,6 +1,6 @@
 <template>
     <!--Модуль табов левого сайдбара-->
-<div class="mr-4" style="width: 20%">
+<div class="border-line ml-3" style="width: 20%">
             <v-tabs
             slider-color="blue" style=" min-height: 100%; width: 100%; background-color: white;">
                 <v-tab  style="width: 100%" :key=1 ripple>
@@ -25,8 +25,14 @@
                                         <div class="col-12">
                                             <hr/>
                                                 <div class="form-group">
-                                                    <label v-if="statusDoc.type !== 'Входящий документ'" class="text-muted" for="exampleFormControlTextarea">Комментарий</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea" rows="5"></textarea>
+                                                    <label 
+                                                        v-if="statusDoc.type !== 'Входящий документ'" 
+                                                        class="text-muted" 
+                                                        for="exampleFormControlTextarea">Комментарий</label>
+                                                    <textarea 
+                                                        class="form-control" 
+                                                        id="exampleFormControlTextarea" 
+                                                        rows="5"></textarea>
                                                 </div>
                                         </div>
                                     </div>
@@ -67,6 +73,13 @@ export default {
 </script>
 
 <style>
+    .border-line{
+        border: 1px solid rgba(0,0,0,.125);
+        border-color: #d7dfe3;
+        border-radius: 4px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+        -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    }
     .text-blue{
         color: #1e88e5;
     }
@@ -78,6 +91,9 @@ export default {
     }
     .collapse-list{
         flex: 1 1 0%;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+    color: white;
     }
 
 </style>

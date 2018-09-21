@@ -1,5 +1,6 @@
 const state = { dataListInDoc: [
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -21,6 +22,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -42,6 +44,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -63,6 +66,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -84,6 +88,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -105,6 +110,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -126,6 +132,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -147,6 +154,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -168,6 +176,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',
@@ -189,6 +198,7 @@ const state = { dataListInDoc: [
     annotation: 'Примечание'
   },
   {
+    id: '0000000000001123',
     checkout: false,
     favorite: false,
     reg_number: 'ВР-220022 от 01.10.2016г.',

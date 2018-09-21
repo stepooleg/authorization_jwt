@@ -61,7 +61,7 @@
         this.loader = this.loading
         console.log(this.loading)
         const { username, password } = this
-        let url = 'http://localhost:8080/simple/login?name=' + username + '&password=' + password
+        let url = process.env.TIKET_SERV + 'simple/login?name=' + username + '&password=' + password
         axios(url, {
           method: 'POST',
           mode: 'no-cors',

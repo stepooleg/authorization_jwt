@@ -41,21 +41,8 @@ export default {
   name: 'action-in-create-document',
   methods: {
     clearDoc () {
-      let document = this.documentData.id
-      axios({
-        method: 'DELETE',
-        mode: 'no-cors',
-        url: 'http://localhost:8080/ddt_incoming/',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        data: {
-          document
-        },
-//        withCredentials: true,
-        credentials: 'same-origin'
-      })
+      let document = JSON.stringify(this.documentData.id)
+      axios.delete(process.env.REST_SERV + 'ddt_incoming/', document, {withCredentials: true})
         .then(response => {
           this.$router.push('List')
         }
@@ -67,32 +54,35 @@ export default {
         })
     },
     createInDoc () {
-      let create = this.$store.getters.getIncoming
-      console.log(create)
-      axios({
+      let document = this.$store.getters.getIncoming
+      let token = localStorage.getItem('user-token')
+      let url = process.env.REST_SERV + 'ddt_incoming/create'
+      console.log('Токен ' + token)
+      console.log('Запрос ' + JSON.stringify(document))
+      axios(url, {
         method: 'POST',
         mode: 'no-cors',
-        url: 'http://localhost:8080/simple/login/',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         data: {
-          create
+          document,
+          token
         },
-//        withCredentials: true,
+          // withCredentials: true,
         credentials: 'same-origin'
       })
-          .then(response => {
-            this.tuble = response.data
-            // this.$store.commit('addList', response.data)
+          .then(resp => {
+            console.log(resp)
             this.$router.push('List')
-          }
-            // handle success
-          )
-          .catch(function (error) {
-            // handle error
-            console.log(error)
+          })
+          .catch(err => {
+            console.log(err)
+            this.$message({
+              message: 'Не удалось создать документ.',
+              type: 'warning'
+            })
           })
     }
   }

@@ -5,11 +5,17 @@ import Card from '@/components/pages/CardDocument'
 import FormAuth from '@/components/pages/FormAuth'
 import CreateIncomingDocument from '@/components/pages/CreateIncomingDocument'
 import ListIncomingDocument from '@/components/pages/ListIncomingDocument'
+import Admin from '@/components/pages/Admin'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
+    },
     {
       path: '/ddt_incoming/list',
       name: 'ListIncomingDocument',

@@ -63,7 +63,7 @@ export default {
       axios({
         method: 'DELETE',
         mode: 'no-cors',
-        url: 'http://localhost:8080/ddt_incoming/',
+        url: process.env.REST_SERV + 'ddt_incoming/',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -84,13 +84,13 @@ export default {
           console.log(error)
         })
     },
-    createInDoc () {
+    updateInDoc () {
       let create = this.$store.getters.getIncoming
       console.log(create)
       axios({
         method: 'PUT',
         mode: 'no-cors',
-        url: 'http://localhost:8080/simple/login/',
+        url: process.env.REST_SERV + 'ddt_incoming/create',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'

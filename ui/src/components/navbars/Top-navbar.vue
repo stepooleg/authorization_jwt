@@ -3,12 +3,12 @@
     <div class="row">
         <div class="col col-lg-12">
             <!--Верхний навбар-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary-new">
-                <div class="header-col-fill" v-bind:class="{'header-col-min' : !showheder}">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary-new pt-pb-0">
+                <div class="header-col-fill pl-pr-pt-pb-0 m-0" style="background-color: rgba(0, 0, 0, 0.05);" v-bind:class="{'header-col-min' : !showheder}">
                     <i class="mdi mdi-auto-fix fa-2x ml-2" style="color: white"></i>
                     <a v-show="showheder" class="navbar-brand ml-2" href="#">СЭДО</a>
                 </div>
-                <ul class="navbar-nav mr-auto mt-md-0">
+                <ul class="navbar-nav mr-auto mt-md-0 ml-3">
                     <!-- This is  -->
                     <li class="nav-item">
                         <a class="nav-link nav-toggler hidden-md-up  waves-effect waves-dark">
@@ -593,7 +593,7 @@
       },
       logoutusr () {
         this.showuser = !this.showuser
-        let url = 'http://localhost:8080/token/invalidate'
+        let url = process.env.TIKET_SERV + 'token/invalidate'
         axios(url, {
           method: 'GET',
           mode: 'no-cors',
@@ -672,12 +672,12 @@
     }
 
     .header-col-fill {
-        max-width: 10%;
-        flex: 10%;
+        max-width: 210px;
+        flex: 210px;
     }
 
     .navbar {
-        padding-left: 0;
+        padding: 0;
     }
 
     .navbar-brand {
@@ -685,8 +685,8 @@
     }
 
     .header-col-min {
-        max-width: 3%;
-        flex: 3%;
+        max-width: 62px;
+        flex: 62px;
     }
 
     .notify {
@@ -749,5 +749,8 @@
     }
     .u-text{
         line-height: 1.5;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+    color: white;
     }
 </style>

@@ -16,7 +16,7 @@
                             </div>
                             <div v-show="show"
                                  class="col-10 pl-2 pr-2 align-middle">
-                                <span class="hide-menu pr-4">
+                                <span class="hide-menu pr-5">
                                     Избранное
                                 </span>
                             </div>
@@ -40,7 +40,7 @@
                                 <i class="mdi mdi-briefcase-download"></i>
                             </div>
                             <div v-show="show" class="col-10 pl-2 pr-2 align-middle">
-                                <span class="hide-menu pr-4">
+                                <span class="hide-menu pr-5">
                                     Мои задания
                                 </span>
                             </div>
@@ -66,7 +66,7 @@
                                 <i class="mdi mdi-share"></i>
                             </div>
                             <div v-show="show" class="col-10 pl-2 pr-2 align-middle">
-                                <span class="hide-menu pr-4">
+                                <span class="hide-menu pr-5">
                                     Задания от<br>
                                     меня
                                 </span>
@@ -89,7 +89,7 @@
                                 <i class="mdi mdi-tag-multiple"></i>
                             </div>
                             <div v-show="show" class="col-10 pl-2 pr-2 align-middle">
-                                <span class="hide-menu pr-4">
+                                <span class="hide-menu pr-5">
                                     Метки
                                 </span>
                             </div>
@@ -112,7 +112,7 @@
                                 <i class="mdi mdi-server"></i>
                             </div>
                             <div v-show="show" class="col-10 pl-2 pr-2 align-middle">
-                                <span class="hide-menu pr-4">
+                                <span class="hide-menu pr-5">
                                     Журнал моих<br>
                                     действий
                                 </span>
@@ -134,7 +134,7 @@
                                 <i class="mdi mdi-table-edit"></i>
                             </div>
                             <div v-show="show" class="col-10 pl-2 pr-2 align-middle">
-                                <span class="hide-menu pr-4">
+                                <span class="hide-menu pr-5">
                                     Журнал моих<br>
                                     действий
                                 </span>
@@ -159,7 +159,7 @@
                                 <i class="mdi mdi-basket"></i>
                             </div>
                             <div v-show="show" class="col-10 pl-2 pr-2 align-middle">
-                                <span class="hide-menu pr-4">
+                                <span class="hide-menu pr-5">
                                     Корзина
                                 </span>
                             </div>
