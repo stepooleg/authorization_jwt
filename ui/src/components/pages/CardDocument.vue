@@ -34,7 +34,7 @@
                                 >
                                   <v-card flat>
                                     <v-card-text> <!-- Содержимое вкладки-->
-                                      <div class="row mt-3">
+                                      <div class="row">
                                       <task-bar :status-doc=onedoc></task-bar>
                                       <properti-document-bar :status-doc=onedoc></properti-document-bar>
                                       </div>

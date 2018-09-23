@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'es6-promise/auto'
 import ElementUI from 'element-ui'
+import locale from 'element-ui/lib/locale/lang/ru-RU'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@babel/polyfill'
 import Vue from 'vue'
@@ -39,7 +40,7 @@ require('moment/locale/ru')
 var Waves = require('vue-directive-waves')
 var VueScrollTo = require('vue-scrollto')
 
-Vue.use(ElementUI)
+Vue.use(ElementUI, {locale})
 Vue.use(VueScrollTo, {
   container: '.chat-box'
 })

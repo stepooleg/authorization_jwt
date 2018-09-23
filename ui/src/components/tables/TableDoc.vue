@@ -60,7 +60,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(row, index) in rows" :key="index" @dblclick="openToCard(index, row.type)">
+                <tr v-for="(row, index) in rows" :key="index" @dblclick="openToCard(index, row.type)" :class="{'if-read': row.if_read}">
                     <td>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" v-model="row.checkout"
@@ -128,6 +128,7 @@
     },
     methods: {
       openToCard (id, type) {
+        this.rows[id].if_read = false
         this.$router.push(
           {
             name: 'Card',
@@ -221,5 +222,8 @@
     }
     .mdi-star{
         font-size: 1.7rem;
+    }
+    .if-read{
+        border-left: 3px solid #1e88e5
     }
 </style>

@@ -3,7 +3,7 @@
     <div class="col-12">
         <div class="row mt-3">
             <div class="col-3">
-                <button type="button" class="btn btn-block btn-outline-info">Добавить поручение</button>
+                <button type="button" @click="dialogFormVisible = true" class="btn btn-block btn-outline-info">Добавить поручение</button>
             </div>
             <div class="col-9"></div>
         </div>
@@ -26,15 +26,15 @@
                                         <li class="dd-item" data-id="1">
                                             <div class="row">
                                                 <i
-                                                  @click="show=!show"
+                                                  @click="user.show=!user.show"
                                                   class="mdi mdi-plus mt-4 fa-lg"
-                                                  v-if="!show" ></i>
+                                                  v-if="!user.show" ></i>
                                                 <i
-                                                  @click="show=!show"
+                                                  @click="user.show=!user.show"
                                                   class="mdi mdi-minus mt-4 fa-lg"
-                                                  v-if="show" ></i>
+                                                  v-if="user.show" ></i>
                                                 <div class="dd-handle w-90">
-                                                    <div @click="userID=index" class="row">
+                                                    <div @click="userID=user" class="row">
                                                         <div class="col-2">
                                                             <img
                                                                 :src="user.img"
@@ -56,21 +56,21 @@
                                             </div>
                                             <ol
                                                     class="dd-list pl-0 child"
-                                                    v-if="show"
-                                                    v-for="(child, ind) in user.cont"
+                                                    v-if="user.show"
+                                                    v-for="(child, ind) in user.treeOfInstructions"
                                                     :key="ind">
                                                 <li class="dd-item" data-id="1">
                                                     <div class="row">
                                                         <i
-                                                                @click="show=!show"
+                                                                @click="child.show=!child.show"
                                                                 class="mdi mdi-plus mt-4 fa-lg"
-                                                                v-if="!show" ></i>
+                                                                v-if="!child.show" ></i>
                                                         <i
-                                                                @click="show=!show"
+                                                                @click="child.show=!child.show"
                                                                 class="mdi mdi-minus mt-4 fa-lg"
-                                                                v-if="show" ></i>
+                                                                v-if="child.show" ></i>
                                                         <div class="dd-handle w-90">
-                                                            <div class="row " @click="userID=ind">
+                                                            <div class="row " @click="userID = child">
                                                                 <div class="col-2">
                                                                     <img
                                                                             :src="child.img"
@@ -100,8 +100,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-7 pl-3 pr-3">
-                <div class="card">
+           <div class="col-7 pl-3 pr-3">
+                <div class="card" v-if="userID !== ''">
                     <div class="card-body">
                         <div class="row">
                                         <div class="col-12">
@@ -112,22 +112,19 @@
                                             </div>
                                             <hr>
                                         </div>
-                                        <div
-                                                class="col-12"
-                                                v-for="(card, cardId) in treeOfInstructions[userID].cont"
-                                                :key="cardId">
+                                        <div class="col-12">
                                             <div class="row">
                                                 <div class="col">Ответственный исполнитель:</div>
                                                 <div class="col-7">
                                                     <div class="row">
                                                         <div class="col-2">
                                                                 <img 
-                                                                    :src="card.image"
+                                                                    :src="userID.cont.image"
                                                                     alt="user" 
                                                                     class="img-circle mr-3">
                                                         </div>
                                                         <div class="col ml-3 pt-3">
-                                                            {{card.nameAuthor}}
+                                                            {{userID.cont.nameAuthor}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -135,7 +132,7 @@
                                             <div class="row mt-3">
                                                 <div class="col">Исполнитель:</div>
                                                 <div class="col-7">
-                                                    <div class="row mt-3" v-if="(ex, inEx) in card" :key="inEx">
+                                                    <div class="row mt-3" v-for="(ex, inEx) in userID.cont.executors" :key="inEx">
                                                          <div class="col-2">
                                                                 <img 
                                                                     :src="ex.img"
@@ -150,11 +147,11 @@
                                             </div>
                                              <div class="row mt-3">
                                                 <div class="col">Срок исполнения:</div>
-                                                <div class="col-7">{{card.periodOfExecution}}</div>
+                                                <div class="col-7">{{userID.cont.periodOfExecution}}</div>
                                             </div>
                                              <div class="row mt-3">
                                                 <div class="col">Дата исполнения:</div>
-                                                <div class="col-7">{{card.dataOfExecution}}</div>
+                                                <div class="col-7">{{userID.cont.dataOfExecution}}</div>
                                             </div>
                                             <div class="row mt-3">
                                                 <div class="col">Поручение:</div>
@@ -162,7 +159,7 @@
                                                     <textarea
                                                             rows='5'
                                                             class="form-control"
-                                                            v-model="card.commission">
+                                                            v-model="userID.cont.commission">
                                                     </textarea>
                                                 </div>
                                             </div>
@@ -172,6 +169,33 @@
                 </div>
             </div>
         </div>
+        <el-dialog title="Добавить согласующего" :visible.sync="dialogFormVisible" width=25%>
+                            <el-form :model="modal">
+                                <el-form-item label="Согласант" :label-width="formLabelWidth">
+                                    <el-select v-model="newname" placeholder="Пожалуйста выберете согласанта">
+                                        <el-option
+                                                :label="u.name"
+                                                :value="ind"
+                                                v-for="(u,ind) in userList"
+                                                :key="ind">
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item label="Срок   " :label-width="formLabelWidth">
+                                     <el-date-picker
+                                        v-model="newday"
+                                        type="date"
+                                        popper-class="bottPick"
+                                        value-format="dd.MM.yyyy"
+                                        placeholder="Выберете дату">
+                                        </el-date-picker>
+                                </el-form-item>
+                            </el-form>
+                            <span slot="footer" class="dialog-footer">
+                                    <el-button @click="dialogFormVisible = false">Отмена</el-button>
+                                    <el-button type="primary" @click="onSave()">Сохранить</el-button>
+                                </span>
+                        </el-dialog>
     </div>
 </template>
 
@@ -181,13 +205,30 @@ export default {
   data () {
     return {
       show: false,
+      newname: '',
+      newday: '',
+      dialogFormVisible: false,
       userID: '',
+      userList: [{
+        name: 'Егоров М.А.',
+        position: 'руководитель проектов',
+        img: require('../../assets/images/users/1.jpg')
+      }, {
+        name: 'Рогов Д.Н.',
+        position: 'директор департамента',
+        img: require('../../assets/images/users/4.jpg')
+      }, {
+        name: 'Щекотов Р.A.',
+        position: 'директор департамента',
+        img: require('../../assets/images/users/5.jpg')
+      }],
       treeOfInstructions: [{
+        show: false,
         img: require('../../assets/images/users/1.jpg'),
         name: 'Егоров М.А.',
         status: 'На исполнение',
         position: 'руководитель проекта',
-        data: 'срок 01.01.2015г.',
+        data: '01.01.2015г.',
         cont: {
           image: require('../../assets/images/users/1.jpg'),
           nameAuthor: 'Егоров М.А.',
@@ -199,17 +240,18 @@ export default {
           dataOfExecution: '25.12.2018г.',
           commission: 'Прошу разобраться и доложить'
         },
-        child: [{
-          img: require('../../assets/images/users/1.jpg'),
-          name: 'Егоров М.А.',
+        treeOfInstructions: [{
+          show: false,
+          img: require('../../assets/images/users/4.jpg'),
+          name: 'Рогов Д.Н.',
           status: 'На исполнение',
-          position: 'руководитель проекта',
-          data: 'срок 01.01.2015г.',
+          position: 'директор департамента',
+          data: '01.03.2017г.',
           cont: {
-            image: require('../../assets/images/users/1.jpg'),
-            nameAuthor: 'Егоров М.А.',
+            image: require('../../assets/images/users/4.jpg'),
+            nameAuthor: 'Рогов Д.Н.',
             executors: [
-                    {img: require('../../assets/images/users/4.jpg'), name: 'Щекотов Д.Н.'},
+                    {img: require('../../assets/images/users/5.jpg'), name: 'Щекотов Д.Н.'},
                     {img: require('../../assets/images/users/2.jpg'), name: 'Боцанова С.С.'}
             ],
             periodOfExecution: '25.12.2018г.',
@@ -221,6 +263,17 @@ export default {
     }
   },
   methods: {
+    onSave () {
+      this.treeOfInstructions.push({
+        show: false,
+        img: this.userList[this.newname].img,
+        name: this.userList[this.newname].name,
+        status: 'На исполнение',
+        position: this.userList[this.newname].position,
+        data: this.newday
+      })
+      this.dialogFormVisible = false
+    }
   }
 }
 </script>
@@ -267,4 +320,13 @@ export default {
    .w-90{
        max-width: 90%;
    }
+   .el-dialog{
+       width: 25%;
+   }
+   .el-date-editor {
+       width: 225px;
+       float: right;
+       right: 12px;
+   }
+   
 </style>
