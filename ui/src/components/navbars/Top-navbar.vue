@@ -5,7 +5,9 @@
             <!--Верхний навбар-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary-new pt-pb-0">
                 <div class="header-col-fill pl-pr-pt-pb-0 m-0" style="background-color: rgba(0, 0, 0, 0.05);" v-bind:class="{'header-col-min' : !showheder}">
-                    <i class="mdi mdi-auto-fix fa-2x ml-2" style="color: white"></i>
+                    <router-link to="/list">
+                        <i class="mdi mdi-auto-fix fa-2x ml-2" style="color: white" ></i>
+                    </router-link>
                     <a v-show="showheder" class="navbar-brand ml-2" href="#">СЭДО</a>
                 </div>
                 <ul class="navbar-nav mr-auto mt-md-0 ml-3">

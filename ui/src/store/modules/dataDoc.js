@@ -1,5 +1,6 @@
 const state = { dataList: [
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'На согласовании',
@@ -16,6 +17,7 @@ const state = { dataList: [
     creator_position: 'Заместитель генерального директора'
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'Согласованно',
@@ -32,6 +34,7 @@ const state = { dataList: [
     creator_position: ''
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'На согласовании',
@@ -48,6 +51,7 @@ const state = { dataList: [
     creator_position: 'Директор по технологическому развитию'
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'На согласовании',
@@ -64,6 +68,7 @@ const state = { dataList: [
     creator_position: 'Заместитель генерального директора'
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'Согласованно',
@@ -80,6 +85,7 @@ const state = { dataList: [
     creator_position: ''
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'На согласовании',
@@ -96,6 +102,7 @@ const state = { dataList: [
     creator_position: 'Директор по технологическому развитию'
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'На согласовании',
@@ -112,6 +119,7 @@ const state = { dataList: [
     creator_position: 'Заместитель генерального директора'
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'Согласованно',
@@ -128,6 +136,7 @@ const state = { dataList: [
     creator_position: ''
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'На согласовании',
@@ -144,6 +153,7 @@ const state = { dataList: [
     creator_position: 'Директор по технологическому развитию'
   },
   {
+    if_read: true,
     checkout: false,
     favorite: false,
     status: 'На согласовании',
