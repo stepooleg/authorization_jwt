@@ -1,8 +1,8 @@
 <template>
-    <div class="row">
-        <div class="col-lg-12 bg-white border-b">
-            <table class="table table-borderless ">
-                <tr class="row">
+    <div class="row pl-3 pr-4">
+        <div class="col-lg-12   pl-0 pr-0 bg-white border-b ml-1">
+            <table class="table table-borderless ml-4">
+                <tr class="row mr-2">
                     <td class="col-4 text-muted">Тип задания:</td>
                     <td class="col-8 text-blue" >
                         <b v-if="status !== 'create'">{{status.status}}</b>
@@ -80,7 +80,6 @@
       'status'
     ],
     mounted () {
-      console.log(this.status)
     }
   }
 </script>

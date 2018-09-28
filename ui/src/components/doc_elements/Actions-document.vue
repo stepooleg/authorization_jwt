@@ -2,70 +2,22 @@
     <!--Модуль блока "Действия"-->
     <div class="col-12">
         <div class="row">
-            <div class="col-12 text-muted mb-2">
+            <div class="col-12 text-muted mb-2 ml-4">
                 Действия:
             </div>
         </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-2 collapse-list">
-                        <span class="mdi mdi-comment-multiple-outline fa-2x"></span>
-                    </div>
-                    <div class="col-10">
-                        <a href="#" class="badge badge-pill badge-info font-tab-mid">
-                            <i class="fas fa-angle-left"></i>
-                            Оставить комментарий
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-2 collapse-list">
-                        <span class="mdi mdi-check fa-2x"></span>
-                    </div>
-                    <div class="col-10">
-                        <a href="#" class="badge badge-pill badge-success font-tab-mid">
-                            <i class="fas fa-angle-left"></i>
-                            Согласовать
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-2 collapse-list">
-                        <span class="mdi mdi-account-plus fa-2x"></span>
-                    </div>
-                    <div class="col-10">
-                        <a href="#" class="badge badge-pill badge-warning font-tab-mid">
-                            <i class="fas fa-angle-left"></i>
-                            На доп. согласование
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-2 collapse-list">
-                        <span class="mdi mdi-thumb-down fa-2x"></span>
-                    </div>
-                    <div class="col-10">
-                        <a href="#" class="badge badge-pill badge-danger font-tab-mid">
-                            <i class="fas fa-angle-left"></i>
-                            На доработку
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <ul class="feeds">
+            <li>
+                <div class="bg-info row ml-2"><i class="mdi mdi-comment-multiple-outline text-white"></i></div> Оставить комментарий</li>
+            <li>
+                <div class="bg-success row ml-2"><i class="mdi mdi-check text-white"></i></div> Согласовать</li>
+            <li>
+                <div class="bg-warning row ml-2"><i class="mdi mdi-account-plus text-white"></i></div> На доп. согласование</li>
+            <li>
+                <div class="bg-danger row ml-2"><i class="mdi mdi-thumb-down text-white"></i></div> На доработку</li>
+        </ul>
+
     </div>
 </template>
 

@@ -2,7 +2,7 @@
 
     <!--Страница авторизации. Подключение происходит автоматически
     при положительной авторизации проис-->
-    <b-container class="bv-example-row bv-example-row-flex-cols">
+    <b-container class="bv-example-row bv-example-row-flex-cols" style="background-color: white; width: 100%; height: 100%">
         <b-row>
             <b-col align-self="center"></b-col>
             <b-col align-self="center" class="mt-3 text-center">
@@ -97,6 +97,9 @@
 </script>
 
 <style scoped>
+    body{
+        background-color: white;
+    }
 .v-btn__content{
   color: white;
 }

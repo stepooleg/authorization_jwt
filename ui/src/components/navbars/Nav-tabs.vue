@@ -20,12 +20,12 @@
                       </table-doc>
                       </div>
                     </div>
-                    <paginator-bot
+                    <!--<paginator-bot
                       class="pagination-lg justify-content-end"
                       :first-number="true"
                       :count-pages=ColPages
                       v-on:remove="swipPage">
-                    </paginator-bot>
+                    </paginator-bot>-->
                   </v-card-text>
               </v-card>
             </v-tab-item>
@@ -47,23 +47,20 @@
           'ВСХ ИА-2200',
           'ИСХ ВР-2200'
         ],
-        RowsInPage: 20,
+        RowsInPage: 10,
         filterDoc: null
       }
     },
     computed: {
       countRows () {
-        return this.tableDoc.slice((this.PageNumber - 1) * this.RowsInPage
-          , this.PageNumber * this.RowsInPage)
-      },
-      ColPages () {
-        return this.tableDoc.length / this.RowsInPage
+      //  return this.$store.getters.getList.slice((this.PageNumber - 1) * this.RowsInPage
+       //   , this.PageNumber * this.RowsInPage)
       }
     },
     methods: {
       swipPage (number) {
         console.log(number)
-        this.PageNumber = number
+      //  this.PageNumber = number
       },
       closeTab (index) {
         this.btabsMas.splice(index, 1)

@@ -1,62 +1,62 @@
 <template>
     <!--Модуль вывода содержимого документа-->
+
     <div class="col-12 align-content-center">
         <div class="row mt-3">
-          <el-upload
-            class="upload-demo"
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList2"
-            list-type="picture">
-            <el-button size="small" type="primary">Нажмите для загрузки</el-button>
-            <div slot="tip" class="el-upload__tip">pdf/doc файлы размером не более 500kb</div>
-          </el-upload>
+            <el-upload
+                    class="upload-demo"
+                    ref="upload"
+                    :file-list="fileList"
+                    :action="URL"
+                    :http-request="submitFile">
+                <el-button slot="trigger" size="small" type="primary">Выберете файл</el-button>
+
+                <div class="el-upload__tip" slot="tip">doc/pdf файлы размером не более 500kb</div>
+            </el-upload>
         </div>
     </div>
 </template>
 
 <script>
-require('vue-dropify/dist/vue-dropify.css')
-import vueDropify from 'vue-dropify'
 const axios = require('axios')
 export default {
   name: 'document-frame-create',
   data () {
     return {
-      fileList2: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
+      URL: process.env.REST_SERV + 'entity/uploadfile',
+      fileList: []
     }
   },
-  components: {
-    vueDropify
-  },
   methods: {
-    uploadFile (event) {
-      const URL = 'http://foobar.com/upload'
+    submitFile (file) {
       let data = new FormData()
-      data.append('name', 'my-picture')
-      data.append('file', event.target.files[0])
-      console.log(event.target.files[0])
-      let config = {
-        header: {
-          'Content-Type': 'application/pdf'
-        }
-      }
-      axios.put(
-        URL,
-        data,
-        config
-    ).then(
-      response => {
-        console.log('image upload response > ', response)
-      }
-    )
+      data.append('file', file.file)
+      console.log(data)
+      console.log(file.file)
+      axios(this.URL, {
+        method: 'Post',
+        mode: 'no-cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data'
+        },
+        data: data,
+        // withCredentials: true,
+        credentials: 'same-origin'
+      })
+       .then(response => {
+         this.$store.commit('addIncomingContent', response.data)
+         console.log(response.data)
+       }
+           // handle success
+       )
+       .catch(function (error) {
+             // handle error
+         console.log(error)
+       })
     },
-    handleRemove (file, fileList) {
-      console.log(file, fileList)
-    },
-    handlePreview (file) {
-      console.log(file)
+    handleFileUpload () {
+      this.file = this.$refs.file.files[0]
     }
   }
 }

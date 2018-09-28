@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <b-container fluid class="p-0">
+    <b-container fluid class="p-0" :style="{fontFamily: editFont}">
+        {{editFont}}
     <router-view></router-view>
     </b-container>
   </div>
@@ -10,9 +11,18 @@
   import { USER_REQUEST } from './store/actions/user'
   export default {
     name: 'app',
+    data () {
+      return {
+      }
+    },
     created: function () {
       if (this.$store.getters.isAuthenticated) {
         this.$store.dispatch(USER_REQUEST)
+      }
+    },
+    computed: {
+      editFont () {
+        return this.$store.getters.getFont
       }
     }
   }
@@ -20,16 +30,14 @@
 
 <style>
   @import 'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900';
+  @import 'https://fonts.googleapis.com/css?family=Istok+Web|M+PLUS+1p|Montserrat|Noto+Sans';
   .v-tabs__div{ text-transform: none !important; }
 
-  body {
-    min-height: 600px;
-    font-family:'Rubik', sans-serif;
+  html, body {
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+    background-color: #eef5f9;
   }
-body{
-  background-color: #eef5f9;
-  font-family: "Poppins", sans-serif;
-}
 
 .tab_star a{
   color: #455a64;

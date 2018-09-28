@@ -288,11 +288,31 @@
       }
     },
     mounted () {
-      axios.post('http://localhost:9000/' + this.$route.params.id)
+      let url = process.env.REST_SERV + '/entity/get'
+      let id = this.$route.params.id
+      let type = 'ddt_incoming'
+      let token = localStorage.getItem('user-token')
+      axios(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: {
+          token,
+          type,
+          id
+        },
+        // withCredentials: true,
+        credentials: 'same-origin'
+      })
       // axios.defaults.headers.common['token'] = localStorage.getItem('user-token')
         .then(response => {
-          this.statusDoc = response.data
-          console.log(this.statusDoc)
+          console.log('Получен документ: ' + response.data)
+          this.$store.commit('addIncomingOneDoc', response.data)
+          console.log('Записанно вхранилище: ' + this.$store.getters.getIncomingOne)
+          this.onedoc = this.$store.getters.getIncomingOne
         }
         )
         .catch(function (error) {

@@ -14,7 +14,7 @@
             </template>
                 <button
                     type="button"
-                    v-for="(n, ind) in 5"
+                    v-for="(n, ind) in countPages"
                     class="btn btn-secondary"
                     :key="ind"
                     @click="removeNumber(n)">{{n}}

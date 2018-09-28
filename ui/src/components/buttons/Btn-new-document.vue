@@ -11,10 +11,10 @@
             <i class="mdi mdi-plus"></i>
         </button>
         <div class="dropdown-menu animated flipInX" :class="{'show': views}" x-placement="bottom-start" style="z-index: 100000; position: absolute; transform: translate3d(0px, 37px, 0px); top: 30px; left: 50px; will-change: transform;">
-                                        <router-link 
-                                            to="ddt_incoming/create" 
+                                        <a
+                                            @click="link"
                                             class="dropdown-item">Входящий документ
-                                        </router-link>
+                                        </a>
                                         <a class="dropdown-item" href="#">Исходящий документ</a>
                                         <a class="dropdown-item" href="#">Внутренний документ</a>
                                         <div class="dropdown-divider"></div>
@@ -31,6 +31,11 @@
     data () {
       return {
         views: false
+      }
+    },
+    methods: {
+      link () {
+        this.$router.push('/ddt_incoming/create')
       }
     }
   }

@@ -29,19 +29,18 @@
       console.log(localStorage.getItem('user-token'))
       let url = process.env.REST_SERV + 'tasks/all'
       axios(url, {
-        method: 'GET',
+        method: 'POST',
         mode: 'no-cors',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Token': localStorage.getItem('user-token')
+          'Content-Type': 'application/json'
         },
 //        withCredentials: true,
         credentials: 'same-origin'
       })
           .then(response => {
             this.tuble = response.data
-            this.$store.commit('addList', response.data)
+            this.$store.commit('addList', response.data.list)
             console.log(response.data)
             console.log(this.$store.getters.getList)
           }

@@ -1,14 +1,15 @@
+
 <template>
     <!--Правый раздел с табами "Основные, Лист согласования и т.д."-->
     <div class="col col-10 centerdoc pr-1" style="font-size: 1.2rem;">
-        <div class="col-12 pr-0 border-line pl-0">
+        <div class="col-12 pr-0 border-line pl-0" style="height: 100%; background-color: white">
             <v-tabs
             slider-color="blue" style="background-color: white; ">
                 <v-tab  :key=1 ripple >
                     <b>Контент</b>
                 </v-tab>
                 <v-tab  :key=2 ripple>  
-                        <b>Основные</b>
+                        <b>Реквизиты</b>
                 </v-tab>
                 <v-tab  :key=3 ripple>
                    <b v-if="statusDoc.type === 'Входящий документ'">История</b>

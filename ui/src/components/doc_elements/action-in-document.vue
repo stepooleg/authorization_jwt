@@ -1,52 +1,23 @@
 <template>
     <!--Модуль блока "Действия"-->
-    <div class="col-12 pr-0">
-       
-        <div class="row mb-3">
-            <div class="col-12 pr-0">
-                <div class="row">
-                    <div class="col-2 pl-0 pr-0 collapse-list">
-                        <button type="button" @click="updateInDoc" class="btn btn-success btn-circle"><i class="far fa-comments"></i> </button>
-                    </div>
-                    <div class="col-10 pl-0">
-                        <div class="font-tab-mid">
-                            <i class="fas fa-angle-left"></i>
-                            Оставить комментарий
-                        </div>
-                    </div>
-                </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 text-muted mb-2 ml-4">
+                Действия:
             </div>
         </div>
-        <div class="row pl-0 pr-0 mb-3">
-            <div class="col-12 pr-0">
-                <div class="row">
-                    <div class="col-2 pl-0 pr-0 collapse-list">
-                        <button type="button" class="btn btn-warning btn-circle"><i class="fas fa-paper-plane"></i> </button>
-                    </div>
-                    <div class="pl-0 col-10">
-                        <div class="font-tab-mid">
-                            <i class="fas fa-angle-left"></i>
-                            Отправить на рассмотрение
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 pr-0">
-                <div class="row">
-                    <div class="col-2 pl-0 pr-0 collapse-list">
-                        <button @click="deleteDoc" type="button" class="btn btn-danger btn-circle"><i class="mdi mdi-close"></i> </button>
-                    </div>
-                    <div class="pl-0 col-10">
-                        <div class=" font-tab-mid">
-                            <i class="fas fa-angle-left"></i>
-                            Аннулировать
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <ul class="feeds">
+            <li>
+                <div class="bg-info row ml-2"><i class="mdi mdi-comment-multiple-outline text-white"></i></div> Оставить комментарий</li>
+            <li>
+                <div class="bg-success row ml-2"><i class="mdi mdi-check text-white"></i></div> Согласовать</li>
+            <li>
+                <div class="bg-warning row ml-2"><i class="mdi mdi-account-plus text-white"></i></div> На доп. согласование</li>
+            <li>
+                <div class="bg-danger row ml-2"><i class="mdi mdi-thumb-down text-white"></i></div> На доработку</li>
+        </ul>
+
     </div>
 </template>
 

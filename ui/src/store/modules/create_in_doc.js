@@ -1,22 +1,22 @@
 const state = { ddt_incoming: {
-  dss_reg_number: 'dgdg',
-  dsdt_reg_date: '',
+  dss_reg_number: '',
+  dsdt_reg_date: null,
   dss_crsp_reg_number: '',
-  dsdt_crsp_reg_date: '',
+  dsdt_crsp_reg_date: null,
   dss_initial_reg_number: '',
-  dsdt_initial_reg_date: '',
-  dsi_number_of_page: '',
+  dsdt_initial_reg_date: null,
+  dsi_number_of_page: 0,
   dss_crsp_name: '',
   dsid_crsp_org: '',
-  dss_adrs_name: '',
+  // dss_adrs_name: '',
   dss_reg_name: '',
   dss_note: '',
   dsi_number_of_appendix: '',
   dss_description: '',
-  dsc_content: '',
   dss_crsp_resolution: '',
   dsid_document_kind: '',
-  dsid_stamp: ''
+  dsid_stamp: '',
+  dsc_content: ''
 }
 }
 const getters = {
@@ -45,14 +45,14 @@ const mutations = {
     state.ddt_incoming.dsi_number_of_page = payload.pages
   },
   addIncomingCreator_name: (state, payload) => {
-    state.ddt_incoming.dss_crsp_name = payload.creator_name
+    state.ddt_incoming.dss_crsp_name = payload.creator_name.name
   },
   addIncomingOrganization: (state, payload) => {
-    state.ddt_incoming.dsid_crsp_org = payload.organization
+    state.ddt_incoming.dsid_crsp_org = payload.organizations
   },
-  addIncomingAddressee: (state, payload) => {
-    state.ddt_incoming.dss_adrs_name = payload.addressee
-  },
+  // addIncomingAddressee: (state, payload) => {
+  //   state.ddt_incoming.dss_adrs_name = payload.addressee
+  // },
   addIncomingType: (state, payload) => {
     state.ddt_incoming.dsid_document_kind = payload.type
   },
@@ -66,13 +66,16 @@ const mutations = {
     state.ddt_incoming.dss_description = payload.description
   },
   addIncomingContent: (state, payload) => {
-    state.ddt_incoming.dsc_content = payload.content
+    state.ddt_incoming.dsc_content = 'fileKey:' + payload
   },
   addIncomingResolution: (state, payload) => {
     state.ddt_incoming.dss_crsp_resolution = payload.resolution
   },
   addIncomingAnnotation: (state, payload) => {
     state.ddt_incoming.dss_reg_name = payload.annotation
+  },
+  addIncomingOfAppendix: (state, payload) => {
+    state.ddt_incoming.dsi_number_of_appendix = payload
   }
 }
 export default {

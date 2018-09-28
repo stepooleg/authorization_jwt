@@ -113,38 +113,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="jsgrid-pager-container" style="">
-                <div class="jsgrid-pager">Страницы:
-                    <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
-                        <a href="javascript:void(0);">Первая</a>
-                    </span>
-                    <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button">
-                        <a href="javascript:void(0);">Предыдущая</a>
-                    </span>
-                    <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span>
-                    <span class="jsgrid-pager-page">
-                        <a href="javascript:void(0);">2</a>
-                    </span>
-                    <span class="jsgrid-pager-page">
-                        <a href="javascript:void(0);">3</a>
-                    </span>
-                    <span class="jsgrid-pager-page">
-                        <a href="javascript:void(0);">4</a>
-                    </span>
-                    <span class="jsgrid-pager-page">
-                        <a href="javascript:void(0);">5</a>
-                    </span>
-                    <span class="jsgrid-pager-nav-button">
-                        <a href="javascript:void(0);">...</a>
-                    </span>
-                    <span class="jsgrid-pager-nav-button">
-                        <a href="javascript:void(0);">Следующая</a>
-                    </span>
-                    <span class="jsgrid-pager-nav-button">
-                        <a href="javascript:void(0);">Последняя</a>
-                    </span> &nbsp;&nbsp; 1 из 7
-                </div>
-            </div>
             <div class="jsgrid-load-shader" style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;"></div><div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...
             </div>
         </div>

@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'es6-promise/auto'
+import FileUpload from 'v-file-upload'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ru-RU'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -45,6 +46,7 @@ Vue.use(VueScrollTo, {
   container: '.chat-box'
 })
 Vue.use(Waves)
+Vue.use(FileUpload)
 Vue.use(BootstrapVue)
 Vue.use(Vuex)
 Vue.use(Vuetify)

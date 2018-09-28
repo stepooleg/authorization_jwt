@@ -26,21 +26,26 @@
       }
     },
     mounted () {
-      console.log(localStorage.getItem('user-token'))
-      let url = process.env.REST_SERV + 'ddt_incoming/list'
+      let token = localStorage.getItem('user-token')
+      let type = 'ddt_incoming'
+      console.log(token)
+      let url = process.env.REST_SERV + 'entity/list'
       axios(url, {
-        method: 'GET',
+        method: 'POST',
         mode: 'no-cors',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Token': localStorage.getItem('user-token')
+          'Content-Type': 'application/json'
+        },
+        data: {
+          token,
+          type
         },
 //        withCredentials: true,
         credentials: 'same-origin'
       })
           .then(response => {
-            this.tuble = response.data
+            this.tuble = 'incoming'
             this.$store.commit('addListInDoc', response.data)
             console.log(response.data)
             console.log(this.$store.getters.getListInDoc)

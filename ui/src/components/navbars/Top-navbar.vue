@@ -561,7 +561,27 @@
                             <li><a href="#"><i class="ti-wallet ml-2"></i> Мои задания</a></li>
                             <li><a href="#"><i class="ti-email ml-2"></i> Сообщения</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings ml-2"></i> Настройки</a></li>
+                            <li>
+                                <a @click="showFonts=!showFonts"><i class="ti-settings ml-2"></i> Настройки</a>
+
+                            </li>
+                            <ul class="dropdown-user" v-if="showFonts">
+
+                                <li>
+                                    <div class="row">
+                                        <div class="col-2 pt-2"><i style="top: 5px;" class="mdi mdi-format-font ml-4 fa-1x"></i></div>
+                                        <div class="col">
+                                            <select class="form-control " v-model="userFont">
+                                                <option selected>Выберете шрифт</option>
+                                                <option value="0">M PLUS 1p</option>
+                                                <option value="1">Istok Web</option>
+                                                <option value="2">Noto Sans</option>
+                                                <option value="3">Montserrat</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                             <li role="separator" class="divider"></li>
                             <li><a href="#" @click="logoutusr"><i class="fa fa-power-off ml-2"></i> Выход</a></li>
                         </ul>
@@ -579,8 +599,11 @@
     data () {
       return {
         style: 'display: none',
+        showFonts: false,
         vision: false,
-        showuser: false
+        showuser: false,
+        userFont: '0',
+        fonts: ['M PLUS 1p', 'Istok Web', 'Noto Sans', 'Montserrat']
       }
     },
     methods: {
@@ -617,6 +640,12 @@
     computed: {
       showheder () {
         return this.$store.getters.readStatus
+      }
+    },
+    watch: {
+      userFont () {
+        this.$store.commit('globalFont', this.fonts[this.userFont])
+        console.log(this.$store.getters.getFont)
       }
     }
   }

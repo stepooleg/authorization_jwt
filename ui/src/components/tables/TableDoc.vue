@@ -69,20 +69,27 @@
                         </div>
                     </td>
                     <td style="width: 10px">
-                        <div @click="row.favourite=!row.favourite">
-                            <i class=" mdi mdi-star-outline"  v-if="!row.favourite"></i>
+                        <div @click="row.favorite=!row.favorite">
+                            <i class=" mdi mdi-star-outline"  v-if="!row.favorite"></i>
                             <i class=" mdi mdi-star"  v-else></i>
                         </div>
                     </td>
                     <td>
                         <div class="font-medium"><b>{{row.status}}</b></div>
-                        <div><b>Дата: {{row.creation_date}}</b></div>
-                        <div><b>Срок {{row.execution_date}}</b></div>
+                        <div>
+                            <b v-if="tableDoc === 'incoming'">Дата: {{row.reg_date}}</b>
+                            <b v-else>Дата: {{row.creation_date}}</b>
+                        </div>
+                        <div>
+                            <b v-if="tableDoc === 'incoming'">Срок {{row.out_date}}</b>
+                            <b v-else>Срок {{row.execution_date}}</b>
+                        </div>
                     </td>
                     <td>
                         <span class="label label-danger" v-if="row.type==='Приказ'">{{row.type}}</span>
                         <span class="label label-primary" v-if="row.type==='Входящий документ'">{{row.type}}</span>
                         <span class="label label-success" v-if="row.type==='Исходный документ'">{{row.type}}</span>
+                        <span class="label label-success" v-if="tableDoc==='incoming'">'Входящий документ'</span>
                         <div>{{row.reg_number}}</div>
                     </td>
                     <td>
@@ -95,12 +102,15 @@
                     </td>
                     <td>
                         <a href="app-contact-detail.html">
-                            <img :src="row.creator_icon" alt="user" class="img-circle mr-3" v-if="row.creator_icon !== 'null'"/>
-                            <span class="round mr-3" v-else>{{row.creator_name.charAt(0)}}</span>
+                            <!--<img :src={require(row.creator_icon)} alt="user" class="img-circle mr-3" v-if="row.creator_icon !== 'null'"/>-->
+                            <span class="round mr-3">{{row.creator_name.charAt(0)}}</span>
                             {{row.creator_name}}
                         </a>
                         <div class="ml-6">
-                            <span>
+                            <span v-if="tableDoc==='incoming'">
+                                {{row.organization}}
+                            </span>
+                            <span v-else="">
                                 {{row.creator_position}}
                             </span>
                         </div>
@@ -183,9 +193,12 @@
     },
     computed: {
       rows () {
-        return this.$store.getters.getList
+        if (this.tableDoc === 'incoming') {
+          return this.$store.getters.getListInDoc.dataListInDoc
+        } else {
+          return this.$store.getters.getList
+        }
       }
-
     },
     props: [
       'tableDoc'

@@ -79,15 +79,15 @@
         this.loading = true
         this.loader = this.loading
         console.log(this.loading)
-        let url = process.env.TIKET_SERV + 'system/query'
+        let url = process.env.REST_SERV + 'system/query'
         axios(url, {
-          method: 'GET',
+          method: 'POST',
           mode: 'no-cors',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          params: {
+          data: {
             token: localStorage.getItem('user-token'),
             xql: this.pushQuery
           },

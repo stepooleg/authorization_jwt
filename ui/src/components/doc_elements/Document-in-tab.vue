@@ -1,236 +1,174 @@
 <template>
     <!--Блок парасемров документа на вкладке Основные-->
-    <div class="col-11 bg-white ml-3">
-        <div class="row mt-4 ">
-            <div class="col text-muted pl-2 pr-0">Статус документа:
-           <span class="text-blue pl-4"> {{statusDoc.status}}</span>
-           </div>
-            
-        </div>
-        <div class="row mt-2 ">
-            <div class="col-6 text-muted pl-2 pr-0">
-                <div class="form-group">
-                    <label class="control-label">Рег номер</label>
-                    <input 
-                        v-model="reg_number" 
-                        type="text" 
-                        id="Number" 
-                        class="form-control is-invalid" 
-                        placeholder="123">
-                        <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>
-                    <small class="form-control-feedback"> </small> 
+    <div class="col-11 bg-white ml-3" >
+        <form action="#" class="form-horizontal form-bordered">
+            <div class="form-body">
+                {{isValidRegNnumber}}
+                <div class="row form-group ">
+                    <label class="control-label text-right col-md-3 text-muted">Статус документа:</label>
+                        <span class="text-muted pl-4"> {{statusDoc.status}}</span>
+
+
                 </div>
-            </div>
-            <div class="col-6 text-muted">
-                <label class="control-label">Дата:</label>
-            <input 
-                type="text" 
-                class="form-control text-blue" 
-                :value="datepick" 
-                @click="pickdate=!pickdate" 
-                placeholder="гггг-мм-дд">
-            <div 
-                v-if="pickdate" 
-                style="
-                    text-transform: capitalize; 
-                    background-color: white; 
-                    position: absolute; 
-                    top: 60px; 
-                    right: 10px; 
+                <div class="form-group row" :class="[!isValidRegNumber ? validClass : '' ]">
+                    <label class="control-label text-right col-md-3 text-muted">Рег. номер:</label>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="123456" class="form-control form-control-danger" v-model="reg_number">
+                        <small v-if="!isValidRegNumber" class="form-control-feedback">Поле должно быть заполнено</small> </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3 text-muted">Дата:</label>
+                    <div class="col-md-9">
+                        <input
+                                type="text"
+                                class="form-control text-blue"
+                                :value="datepick"
+                                @click="pickdate=!pickdate"
+                                placeholder="гггг-мм-дд">
+                        <div
+                                v-if="pickdate"
+                                style="
+                    text-transform: capitalize;
+                    background-color: white;
+                    position: absolute;
+                    top: 40px;
+                    right: 15px;
                     z-index: 10000;">
-            <v-flex xs12 sm6 class="hidden-xs-only">
-                <v-date-picker 
-                    style="text-transform: capitalize;" 
-                    locale ="ru-RU" 
-                    v-model="reg_date" 
-                    color="blue lighten-1" 
-                    header-color="blue">
-                </v-date-picker>
-            </v-flex>
-            </div>
-            </div>
-        </div>
-        <div class="row mt-2 ">
-            <div class="col-6 text-muted pl-2 pr-0">
-                <div class="form-group">
-                    <label class="control-label">В ответ на:</label>
-                    <input 
-                        v-model="answer_doc" 
-                        type="text" 
-                        id="answer_doc" 
-                        class="form-control" 
-                        placeholder="">
-                    <small class="form-control-feedback"> </small> 
+                            <v-flex xs12 sm6 class="hidden-xs-only">
+                                <v-date-picker
+                                        style="text-transform: capitalize;"
+                                        locale ="ru-RU"
+                                        v-model="reg_date"
+                                        color="blue lighten-1"
+                                        header-color="blue">
+                                </v-date-picker>
+                            </v-flex>
+                        </div>
+                        <small class="form-control-feedback"></small> </div>
                 </div>
-            </div>
-            <div class="col-6 text-muted">
-                <label class="control-label">от:</label>
-            <input 
-                type="text" 
-                class="form-control text-blue" 
-                :value="datepickanswer" 
-                @click="pickdateanswer=!pickdateanswer" 
-                placeholder="гггг-мм-дд">
-            <div 
-                v-if="pickdateanswer" 
-                style="
-                    text-transform: capitalize; 
-                    background-color: white; 
-                    position: absolute; 
-                    top: 60px; 
-                    right: 10px; 
+                <div class="form-group row" :class="[!isValidInitialRegNumber ? validClass : '' ]">
+                    <label class="control-label text-right col-md-3 text-muted">В ответ на:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-danger" placeholder="" v-model="answer_doc">
+                        <small v-if="!isValidInitialRegNumber" class="form-control-feedback">Поле должно быть заполнено</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3 text-muted">От:</label>
+                    <div class="col-md-9">
+                        <input
+                                type="text"
+                                class="form-control text-blue"
+                                :value="datepickanswer"
+                                @click="pickdateanswer=!pickdateanswer"
+                                placeholder="гггг-мм-дд">
+                        <div
+                                v-if="pickdateanswer"
+                                style="
+                    text-transform: capitalize;
+                    background-color: white;
+                    position: absolute;
+                    top: 40px;
+                    right: 15px;
                     z-index: 10000;">
-            <v-flex xs12 sm6 class="hidden-xs-only">
-                <v-date-picker 
-                    style="text-transform: capitalize;" 
-                    locale ="ru-RU" 
-                    v-model="answer_date" 
-                    color="blue lighten-1" 
-                    header-color="blue">
-                </v-date-picker>
-            </v-flex>
-            </div>
-            </div>
-        </div>
-        <div class="row mt-2 ">
-            <div class="col-6 text-muted pl-2 pr-0">
-                <div class="form-group">
-                    <label class="control-label">Листов/Приложений</label>
-                    <input v-model="pages" type="text" id="pages" class="form-control" placeholder="">
-                    <small class="form-control-feedback"> </small> 
-                </div>
-            </div>
-            <div class="col-6 text-muted">
-                <div class="form-group">
-                    <label class="control-label">&nbsp</label>
-                    <input v-model="application" type="text" id="application" class="form-control" placeholder=" ">
-                    <small class="form-control-feedback"> </small> 
-                </div>
-            </div>
-        </div>
-        <div class="row mt-2 ">
-            <div class="col-12 text-muted pl-2 pr-0">
-                <div class="form-group">
-                    <label class="control-label">Автор/Организация</label>
-                    <select 
-                        v-if="typeDoc ==='Имя автора'" 
-                        v-model="typeDoc" 
-                        class="
-                            message-widget 
-                            contact-widget 
-                            form-control 
-                            custom-select 
-                            mr-sm-2" 
-                        id="inlineFormCustomSelect">
-                            <option selected>Имя автора</option>
-                            <option value="Рогов Дмитрий Николаевич">
-                                <a href="#">
-                                    <div class="user-img"> 
-                                        <img 
-                                            src="../../assets/images/users/4.jpg" 
-                                            alt="user" 
-                                            class="img-circle"> 
-                                        <span class="profile-status online pull-right"></span> 
-                                    </div>
-                                    <div class="mail-contnet">
-                                        <h5>Рогов Дмитрий Николаевич</h5> 
-                                        <span class="mail-desc">info@wrappixel.com</span>
-                                    </div>
-                                </a>
-                            </option>
-                            <option value="Егоров Михаил Александрович">
-                                <a href="#">
-                                    <div class="user-img"> 
-                                        <img 
-                                            src="../../assets/images/users/1.jpg" 
-                                            alt="user" 
-                                            class="img-circle"> 
-                                        <span class="profile-status online pull-right"></span> 
-                                    </div>
-                                    <div class="mail-contnet">
-                                        <h5>Егоров Михаил Александрович</h5> 
-                                        <span class="mail-desc">egorov@wrappixel.com</span>
-                                    </div>
-                                </a>
-                            </option>
-                            <option value="СЭДО">Выполняется</option>
-                    </select>
-                    <div class="row" v-if="typeDoc ==='Рогов Дмитрий Николаевич'" @dblclick="typeDoc='Имя автора'">
-                        <div class=" row message-widget contact-widget">
-                            <div class="row ml-2">
-                                <div class="col-3 user-img"> 
-                                    <img width="50px" src="../../assets/images/users/4.jpg" alt="user" class="img-circle"> 
-                                    <span class="profile-status online pull-right"></span> 
-                                </div>
-                                <div class="col mail-contnet">
-                                    <h5>Рогов Дмитрий Николаевич</h5> 
-                                        <span class="mail-desc">info@wrappixel.com</span>
-                                </div>
-                            </div>
+                            <v-flex xs12 sm6 class="hidden-xs-only">
+                                <v-date-picker
+                                        style="text-transform: capitalize;"
+                                        locale ="ru-RU"
+                                        v-model="answer_date"
+                                        color="blue lighten-1"
+                                        header-color="blue">
+                                </v-date-picker>
+                            </v-flex>
                         </div>
+                        <small class="form-control-feedback"></small>
                     </div>
-                    <div class="row" v-if="typeDoc ==='Егоров Михаил Александрович'" @dblclick="typeDoc='Имя автора'">
-                        <div class=" row message-widget contact-widget">
-                            <div class="row ml-2">
-                                <div class="col-3 user-img"> 
-                                    <img width="50px" src="../../assets/images/users/1.jpg" alt="user" class="img-circle"> 
-                                    <span class="profile-status online pull-right"></span> 
-                                </div>
-                                <div class="col mail-contnet">
-                                    <h5>Егоров Михаил Александрович</h5> 
-                                        <span class="mail-desc">egorov@wrappixel.com</span>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="form-group row" :class="[!isValidNumberOfPage ? validClass : '' ]">
+                    <label class="control-label text-right col-md-3 text-muted">Листов</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-danger" v-model="pages">
+                        <small v-if="!isValidNumberOfPage" class="form-control-feedback">Поле должно быть заполнено</small>
                     </div>
-                    <small class="form-control-feedback"> </small> 
-                    <label class="control-label"></label>
-                    <input v-model="organization" type="text" id="organization" class="form-control" placeholder="">
-                    <small class="form-control-feedback"> </small> 
+                </div>
+                <div class="form-group row" :class="[!isValidNumberOfAppendix ? validClass : '' ]">
+                    <label class="control-label text-right col-md-3 text-muted">Приложений</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control form-control-danger" v-model="application">
+                        <small v-if="!isValidNumberOfAppendix" class="form-control-feedback">Поле должно быть заполнено</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3 text-muted">Автор</label>
+                    <div class="col-md-9">
+                        <select v-model="creator_name" class="form-control custom-select text-muted">
+                            <option
+                                :value="user"
+                                v-for="(user, index) in userList"
+                                :key="index">{{user.dss_first_name}}  {{user.dss_middle_name}} {{user.dss_last_name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3 text-muted">Организация</label>
+                    <div class="col-md-9">
+                        <select v-model="organization" class="form-control custom-select text-muted">
+                            <option
+                                v-for="(orgitem, indorg) in organizationsList"
+                                :key="indorg"
+                                :value="orgitem"
+                                class="text-muted">{{orgitem.dss_name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3 text-muted">Адресат</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" v-model="addressee">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3 text-muted">Вид документа</label>
+                    <div class="col-md-9">
+                        <select v-model="type" class="form-control custom-select text-muted">
+                            <option
+                                    v-for="(kinditem, indkind) in kindList"
+                                    :key="indkind"
+                                    :value="kinditem"
+                                    class="text-muted">{{kinditem.dss_name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label text-right col-md-3 text-muted">Гриф</label>
+                    <div class="col-md-9">
+                        <select v-model="status" class="form-control custom-select text-muted">
+                            <option
+                                    v-for="(stampitem, indstamp) in stampList"
+                                    :key="indstamp"
+                                    :value="stampitem"
+                                    class="text-muted">{{stampitem.dss_name}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-2 ">
-            <div class="col-12 text-muted pl-2 pr-0">
-                <div class="form-group">
-                    <label class="control-label">Адресат</label>
-                    <input v-model="addressee" type="text" id="addressee1" class="form-control" placeholder="">
-                    <small class="form-control-feedback"> </small> 
-                    <label class="control-label"></label>
-                    <input v-model="addressee" type="text" id="addressee2" class="form-control" placeholder="">
-                    <small class="form-control-feedback"> </small> 
-                </div>
-            </div>
-        </div>
-        <div class="row mt-2 ">
-            <div class="col-12 text-muted pl-2 pr-0">
-                <div class="form-group">
-                    <label class="control-label">Вид документа:</label>
-                    <input v-model="type" type="text" id="type" class="form-control" placeholder="">
-                    <small class="form-control-feedback"> </small> 
-                </div>
-            </div>
-        </div>
-        <div class="row mt-2 ">
-            <div class="col-12 text-muted pl-2 pr-0">
-                <div class="form-group">
-                    <label class="control-label">Гриф:</label>
-                    <input v-model="status" type="text" id="status" class="form-control" placeholder="">
-                    <small class="form-control-feedback"> </small> 
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </template>
 
 <script>
+  const axios = require('axios')
   export default {
     name: 'properti-document-tab',
     data () {
       return {
         typeDoc: 'Имя автора',
+        validClass: 'has-danger',
+        isValidRegNnumber: false,
         pickdate: false,
         pickdateanswer: false,
         reg_number: '',
@@ -258,56 +196,226 @@
       },
       datepickanswer () {
         return this.answer_date
+      },
+      userList () {
+        return this.$store.getters.getUserList
+      },
+      organizationsList () {
+        return this.$store.getters.getOrganizationList
+      },
+      kindList () {
+        return this.$store.getters.getKindList
+      },
+      stampList () {
+        return this.$store.getters.getStampList
+      },
+      isValidRegNumber () {
+        return this.$store.getters.getisValidRegNumber
+      },
+      isValidInitialRegNumber () {
+        return this.$store.getters.getisValidInitialRegNumber
+      },
+      isValidNumberOfPage () {
+        return this.$store.getters.getisValidNumberOfPage
+      },
+      isValidNumberOfAppendix () {
+        return this.$store.getters.getisValidNumberOfAppendix
       }
     },
     watch: {
       reg_number () {
-        this.$store.commit('addIncomingReg_number', {reg_number: this.reg_number})
+        if (this.reg_number.length > 0) {
+          this.$store.commit('addIsValidRegNumber', true)
+          this.$store.commit('addIncomingReg_number', {reg_number: this.reg_number})
+        }
         console.log(this.$store.getters.getIncoming.dss_reg_number)
       },
-      reg_data () {
-        this.$store.commit('addIncomingReg_data', {reg_data: this.reg_data})
-        console.log(this.$store.getters.getIncoming.reg_data)
+      reg_date () {
+        this.$store.commit('addIncomingReg_date', {reg_date: this.reg_date})
+        console.log(this.$store.getters.getIncoming.dsdt_reg_date)
       },
       answer_doc () {
-        this.$store.commit('addIncomingAnswer_doc', {answer_doc: this.answer_doc})
-        console.log(this.$store.getters.getIncoming.answer_doc)
+        if (this.answer_doc.length > 0) {
+          this.$store.commit('addIsValidInitialRegNumber', true)
+          this.$store.commit('addIncomingAnswer_doc', {answer_doc: this.answer_doc})
+        }
+        console.log(this.$store.getters.getIncoming.dss_initial_reg_number)
       },
       answer_date () {
         this.$store.commit('addIncomingAnswer_date', {answer_date: this.answer_date})
-        console.log(this.$store.getters.getIncoming.answer_date)
+        console.log(this.$store.getters.getIncoming.dsdt_initial_reg_date)
       },
       pages () {
-        this.$store.commit('addIncomingPages', {pages: this.pages})
-        console.log(this.$store.getters.getIncoming.pages)
+        if (this.pages.length > 0) {
+          this.$store.commit('addIsValidNumberOfPage', true)
+          this.$store.commit('addIncomingPages', {pages: this.pages})
+        }
+        console.log(this.$store.getters.getIncoming.dsi_number_of_page)
       },
       application () {
-        this.$store.commit('addIncomingApplication', {application: this.application})
-        console.log(this.$store.getters.getIncoming.application)
+        if (this.pages.length > 0) {
+          this.$store.commit('addIsValidNumberOfPage', true)
+          this.$store.commit('addIncomingOfAppendix', this.application)
+        }
+        console.log(this.$store.getters.getIncoming.dsi_number_of_appendix)
       },
       creator_name () {
-        this.$store.commit('addIncomingCreator_name', {creator_name: this.creator_name})
-        console.log(this.$store.getters.getIncoming.creator_name)
+        console.log(this.creator_name)
+        let url = process.env.REST_SERV + 'entity/list'
+        let type = 'dm_user'
+        let token = localStorage.getItem('user-token')
+        let value = this.creator_name.dss_name
+        console.log('Токен ' + localStorage.getItem('user-token'))
+        axios(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: {
+            token,
+            type,
+            value
+          },
+//      withCredentials: true,
+          credentials: 'same-origin'
+        })
+           .then(response => {
+             console.log('' + response.data)
+           }
+                  // handle success
+              )
+              .catch(function (error) {
+                  // handle error
+                console.log(error)
+              })
+        this.$store.commit('addIncomingCreator_name', {creator_name: this.creator_name.dss_name})
+        console.log(this.$store.getters.getIncoming.dss_crsp_name)
       },
       addressee () {
         this.$store.commit('addIncomingAddressee', {addressee: this.addressee})
-        console.log(this.$store.getters.getIncoming.addressee)
+        console.log(this.$store.getters.getIncoming.dss_adrs_name)
       },
       type () {
-        this.$store.commit('addIncomingType', {creator_name: this.type})
-        console.log(this.$store.getters.getIncoming.type)
+        let url = process.env.REST_SERV + 'entity/list'
+        let type = 'ddt_document_kind'
+        let token = localStorage.getItem('user-token')
+        let value = this.type.r_object_id
+        console.log('Токен вида:' + localStorage.getItem('user-token'))
+        axios(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: {
+            token,
+            type,
+            value
+          },
+//      withCredentials: true,
+          credentials: 'same-origin'
+        })
+           .then(response => {
+             console.log(response.data)
+           }
+                  // handle success
+              )
+              .catch(function (error) {
+                  // handle error
+                console.log(error)
+              })
+        this.$store.commit('addIncomingType', {type: this.type.r_object_id})
+        console.log(this.$store.getters.getIncoming.dsid_document_kind)
       },
       status () {
-        this.$store.commit('addIncomingStatus', {status: this.status})
-        console.log(this.$store.getters.getIncoming.status)
+        let url = process.env.REST_SERV + 'entity/list'
+        let type = 'ddt_stamp'
+        let token = localStorage.getItem('user-token')
+        let value = this.type.r_object_id
+        console.log('Токен штампа:' + localStorage.getItem('user-token'))
+        axios(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: {
+            token,
+            type,
+            value
+          },
+//      withCredentials: true,
+          credentials: 'same-origin'
+        })
+             .then(response => {
+               console.log(response.data)
+             }
+                  // handle success
+              )
+              .catch(function (error) {
+                  // handle error
+                console.log(error)
+              })
+        this.$store.commit('addIncomingStatus', {status: this.status.r_object_id})
+        console.log(this.$store.getters.getIncoming.dsid_stamp)
+      },
+      organization () {
+        let url = process.env.REST_SERV + 'entity/list'
+        let type = 'ddt_organization'
+        let token = localStorage.getItem('user-token')
+        let value = this.organization.r_object_id
+        console.log('Токен организации:' + localStorage.getItem('user-token'))
+        axios(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: {
+            token,
+            type,
+            value
+          },
+//      withCredentials: true,
+          credentials: 'same-origin'
+        })
+              .then(response => {
+                console.log(response.data)
+              }
+                  // handle success
+              )
+              .catch(function (error) {
+                  // handle error
+                console.log(error)
+              })
+        this.$store.commit('addIncomingOrganization', {organizations: this.organization.r_object_id})
+        console.log(this.$store.getters.getIncoming.dsid_crsp_org)
+      },
+      annotation () {
+        this.$store.commit('addIncomingAnnotation', {annotation: this.annotation})
+        console.log(this.$store.getters.getIncoming.annotation)
+      },
+      resolution () {
+        this.$store.commit('addIncomingResolution', {resolution: this.resolution})
+        console.log(this.$store.getters.getIncoming.resolution)
+      },
+      out_number () {
+        this.$store.commit('addIncomingOut_number', {out_number: this.out_number})
+        console.log(this.$store.getters.getIncoming.out_number)
+      },
+      out_date () {
+        this.$store.commit('addIncomingOut_date', {out_date: this.out_date})
+        console.log(this.$store.getters.getIncoming.out_date)
       }
     },
     props: [
       'statusDoc'
-    ],
-    mounted () {
-      console.log(this.reg_date)
-    }
+    ]
   }
 </script>
 

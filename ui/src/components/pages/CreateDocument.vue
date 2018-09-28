@@ -46,7 +46,6 @@
 </template>
 
 <script>
-  const axios = require('axios')
   export default {
     name: 'CardDocument',
     data () {
@@ -54,19 +53,6 @@
         statusDoc: 'Мои задания',
         onedoc: ''
       }
-    },
-    mounted () {
-      axios.post('http://localhost:9000/' + this.$route.params.id)
-      // axios.defaults.headers.common['token'] = localStorage.getItem('user-token')
-        .then(response => {
-          this.statusDoc = response.data
-          console.log(this.statusDoc)
-        }
-        )
-        .catch(function (error) {
-          console.log(error)
-        })
-      this.onedoc = this.$store.getters.getList[this.$route.params.id]
     }
   }
 </script>

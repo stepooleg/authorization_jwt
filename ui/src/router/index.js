@@ -17,7 +17,7 @@ export default new Router({
       component: Admin
     },
     {
-      path: '/ddt_incoming/list',
+      path: '/entity/list',
       name: 'ListIncomingDocument',
       component: ListIncomingDocument
     },
